@@ -1,0 +1,3 @@
+Credits
+
+PxPlus_IBM_EGA8.ttf : int10h.org/oldschool-pc-fonts © 2016 VileR

@@ -1,0 +1,8 @@
+# windows and mac fuzz
+bin
+tmp
+out.log
+.DS_Store
+
+# clion binary output
+cmake-build-debug/
