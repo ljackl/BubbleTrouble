@@ -3,7 +3,7 @@ project(BubbleTrouble)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES src/main.cpp)
+set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.hpp src/Blob.cpp src/Blob.hpp)
 add_executable(BubbleTrouble ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
