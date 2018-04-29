@@ -1,7 +1,6 @@
 //
 // Created by pat on 18/04/18.
 //
-#include "stdafx.h"
 
 #include "Blob.hpp"
 

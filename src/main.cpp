@@ -1,11 +1,12 @@
-#include "stdafx.h"
-
 #include <iostream>
 #include "Game.hpp"
+#include "states/SplashGameState.hpp"
 
 int main() {
     Game *game = new Game();
     game->init();
+
+    game->ChangeState( new SplashGameState() );
 
     while (game->running())
     {
