@@ -1,0 +1,19 @@
+Daily Standup for [Group 1 / Battleship / Wk8]
+Date: 27/04/2018
+
+Talking Points
+============================
+Things I've done
+* Basic state based menu controller
+
+Things that were blocking me
+* Repo was a missing source files, but thats fixed now
+
+Still working on
+* Resource management
+
+Plan on doing
+* Putting artifacts on Git now that the repo is organised
+
+General status
+* On track
