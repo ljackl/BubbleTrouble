@@ -1,9 +1,7 @@
 //
 // Created by pat on 18/04/18.
 //
-#include "stdafx.h"
 
-#include <iostream>
 #include "Game.hpp"
 
 Game::Game()
@@ -17,7 +15,6 @@ void Game::init() {
     blob = Blob(640 / 2, 1);
 
     window = new sf::RenderWindow(sf::VideoMode(640,480,32),"Bubble Trouble Remastered");
-    //if (window->isOpen()) std::cout << "Here!" << std::endl;
 
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
 

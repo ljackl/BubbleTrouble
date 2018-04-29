@@ -5,6 +5,10 @@
 #ifndef BUBBLETROUBLE_BLOB_H
 #define BUBBLETROUBLE_BLOB_H
 
+#ifdef _WIN32
+#include "stdafx.h"
+#endif
+
 #include <SFML/Graphics.hpp>
 
 class Blob
