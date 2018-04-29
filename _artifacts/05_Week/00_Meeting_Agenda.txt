@@ -1,0 +1,39 @@
+Meeting Agenda for [Group # / Open Project / Wk5]
+Date/Location: 06-Apr-2018 at 01:00 in EN305
+
+Information Updates/Reminders
+=============================
+* This week will be about developing and creating the vision statement/document
+* A template vision document is available on Blackboard but it doesn't need to be fully filled out. Choose relevant sections.
+
+Decisions Needed
+================
+* (D1) Which team member will create Trello board and invite other team members?
+* (D2) Which team member will create the Git repository?
+* (D3) Which team member will create the Wiki entry for the vision statement (based on template)?
+* (D4) What language and platform will the project be developed on?
+* (D5) Will it be an application or game?
+* (D6) Based on D4 what will the project be?
+* (D7) Who will be the product owner?
+* (D8) Product Vision Board
+	* Vision:
+		- What is your motivation for creating the product?
+		- Which positive change should it bring about?
+	* Target Group:
+		- Which market or market segment does the product address?
+		- Who are the target customers and users?
+	* Needs:
+		- What problem does the product solve?
+		- Which benefit does it provide?
+	* Product:
+			- What product is it?
+			- What makes it stand out?
+			- Is it feasible to develop the product?
+	* Business Goals:
+			- How is the product going to benefit the company?
+			- What are the business goals?
+
+General Items
+=============
+* Need a github account for this project. See (D2)
+* Need github wiki pages to document project details. See (D3)

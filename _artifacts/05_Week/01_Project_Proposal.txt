@@ -1,0 +1,28 @@
+to:bvo@swin.edu.au
+
+Hey Bao Vo,
+
+This email is to register our team for the Open Project D/HD tasks.
+We've discussed it with our tutor and he has approved of the project.
+
+Team Members:
+Sarah Howarth, 101265321
+Jack Howarth-Green, 101105692
+Patrick Kelley, 101082724
+
+Tutorial: Friday, 14:30, EN310
+Tutor: M.D. Anwar
+Project:  Bubble Trouble Remastered will be a remaster of the classic Miniclip game Bubble Trouble. (See: https://www.miniclip.com/games/bubble-trouble/en/). It will be made using C++ and an undecided library (SDL2 or other).
+Bubble Trouble is a 2D bubble shooter type game. You and optionally one other play have to shoot randomly spawning bubbles and that upon being shot will split into two more bubbles and so on until the bubble is gone. If a bubble hits a player they lose. The aim is to get as many points and last as long as possible.
+
+Bubble Trouble Remastered
+- Two or 1 player
+- Player can save or play with someone online (wish list feature)
+- Controller mapping ability
+- Customisable avatar
+- High score saving
+- New graphics & sounds
+
+Regards,
+Patrick Kelley & team
+

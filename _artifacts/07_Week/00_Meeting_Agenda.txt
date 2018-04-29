@@ -1,0 +1,26 @@
+Meeting Agenda for [Open Project / Wk7]
+Date/Location: 20-Apr-2018 at 01:30 in EN305
+
+Information Updates/Reminders
+============================
+* This week we'll be continuing developing and researching existing products
+
+Decisions Needed
+================
+* (D1) Which team member will upload all project-related artifacts (including code, design, meeting agendas and minutes, and documentation)?
+* (D2) Which team member will create the contributions wiki page (updated by all team members)?
+* (D3) Which team member will create the Resource management class (load and free SFML resource files, music, images, fonts etc)?
+* (D4) Which team member will create the Player class?
+* (D5) Which team member will create the state based menu management class?
+
+General Items
+=============
+* Use branches for the different additions
+* Asset aquisition discussion
+* Current development status discussion
+* Product owner is responsible for developing and researching specific requirements. Develop the following wiki pages (similar to the BattleShip project):
+    * Team Details
+    * Gameplay Overview
+    * Game Screens and Flow (without the gameplay screens naturally as we haven't got any yet)
+    * User Interface
+    * Gameplay

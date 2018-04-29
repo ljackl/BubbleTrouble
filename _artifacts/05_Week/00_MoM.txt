@@ -1,0 +1,55 @@
+Date/Location: 06-Apr-2018 in EN305
+Attendees: Patrick Kelley, Sarah Howarth, Jack Howarth-Green
+Start Time: [01:21]
+End Time: [01:45]
+
+Decisions
+=========
+* (D1) Decided that Sarah will create the Trello board and invite the other team members (tutor included)
+* (D2) Decided that Jack will create the Git repository
+* (D3) Decided that Patrick will create the Wiki entry for the vision statement
+* (D4) Decided on using C++. Furthermore Jack and Patrick will research what library to use. With SDL2 as a fallback.
+* (D5) Decided that the project will be a game
+* (D6) We'll be creating a Bubble Trouble like game 
+* (D7) For now Sarah will be the product owner
+* (D8) Product Vision Board discussion
+	* Vision:
+		- What is your motivation for creating the product?
+			For fun and provided leisurely entertainment. Also to sharpen personal development skills
+		- Which positive change should it bring about?
+			N/A
+	* Target Group:
+		- Which market or market segment does the product address?
+			Casual gaming
+		- Who are the target customers and users?
+			Casual gamers, kids, etc
+	* Needs:
+		- What problem does the product solve?
+			Flash is dying, this will be a remaster as native app and won't require flash
+		- Which benefit does it provide?
+			Non-flash miniclip gaming, and collaboration development experience
+	* Product:
+			- What product is it?
+				Bubble Trouble Remaster, a native 'clone' of the classic Miniclip flash game Bubble Trouble
+			- What makes it stand out?
+				Non-flash, cross-platform, new graphics
+			- Is it feasible to develop the product?
+				Yes, maybe not to full completion graphics wise but the base game machanics
+	* Business Goals:
+			- How is the product going to benefit the company?
+				New demographic to target
+				New Market
+				Public exposure 
+			- What are the business goals?
+				Get exposure
+				Find demographics/market
+				Get exp in programming, team work
+
+Actions
+=======
+* Sarah to create Trello board and invite members. Also add the tasks. See (D1)
+* Jack to create the Git repository. See (D2)
+* Patrick to add the wiki entry for vision statement. See (D3)
+* Jack and Patrick to research C++ gaming libraries. See (D4)
+* Everyone needs to build the project wiki files.
+* Everyone to contribute to vision statement

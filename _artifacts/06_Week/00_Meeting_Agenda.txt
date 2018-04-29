@@ -1,0 +1,30 @@
+Meeting Agenda for [Open Project / Wk5]
+Date/Location: 13-Apr-2018 at 01:30 in EN305
+
+Information Updates/Reminders
+=============================
+* This week will be starting developing and researching existing products
+
+Decisions Needed
+================
+* (D1) Which team member will create the base project files?
+* (D2) Which team member will research/develop what coding standard to use (variable/method naming etc)?
+* (D3) Which team member will create and develop the Features and Functionality wiki entry?
+* (D4) Which team member will create the following wiki pages?
+    * Issues and Bugs
+    * Ideas and Extensions
+    * List of Files
+    * Project Planning
+* (D5) What IDE will this be developed on (linux and windows)?
+* (D6) Who will be responsible for asset creation/aquisition?
+* (D7) What is the current development goal?
+
+General Items
+=============
+* A wiki entry for project planning needs to be added that will have the coding standard outlined along with other useful information like SFML tutorials (See D2)
+* Product owner is responsible for developing and researching specific requirements. Develop the following wiki pages (similar to the BattleShip project):
+    * Team Details
+    * Gameplay Overview
+    * Game Screens and Flow (without the gameplay screens naturally as we haven't got any yet)
+    * User Interface
+    * Gameplay

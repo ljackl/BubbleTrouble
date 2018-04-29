@@ -1,0 +1,18 @@
+Date/Location: 13-Apr-2018 in EN305
+Attendees: Patrick Kelley, Sarah Howarth, Jack Howarth-Green
+Start Time: [01:50]
+End Time: [02:00]
+Decisions
+=========
+* (D1) Pat will create the base project files
+* (D2) Jack and Pat will research and discuss the coding standard to be used
+* (D3) Sarah will create and develop the Features and Functionality wiki entry
+* (D4) Jack will create the wiki pages listed in D4 above
+* (D5) Visual Studio will be used for development on Windows and C Lion will be used on Unix
+* (D6) Jack and Pat have defined the current development goal and would like to achieve the following:
+Get the base game loop up.
+1.	Setup menu controller
+2.	Basic play state where you can move a character
+
+Actions
+* Update the Trello board with tasks
