@@ -6,12 +6,20 @@
 #define BUBBLETROUBLE_PLAYGAMESTATE_H
 
 #include "GameState.hpp"
+#include "MenuGameState.hpp"
+#include "../Game.hpp"
 
 class PlayGameState : public GameState {
 public:
-    void update() override;
+    PlayGameState();
+
+    void update(sf::RenderWindow* window) override;
     void draw(sf::RenderWindow* window) override;
     void handleEvents(sf::RenderWindow* window, Game* game) override;
+
+private:
+    sf::Font font;
+    sf::Text text;
 };
 
 

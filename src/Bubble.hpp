@@ -11,7 +11,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Blob
+class Bubble
 {
 private:
     sf::Vector2f position;
@@ -22,7 +22,7 @@ private:
     float yVelocity = .2f;
 
 public:
-    Blob(float startX, float startY);
+    Bubble(float startX, float startY);
 
     sf::FloatRect getPosition();
 
@@ -36,7 +36,7 @@ public:
 
     void hitBottom();
 
-    void update();
+    void update(sf::RenderWindow &window);
 
 };
 

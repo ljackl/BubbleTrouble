@@ -2,10 +2,10 @@
 // Created by pat on 18/04/18.
 //
 
-#include "Blob.hpp"
+#include "Bubble.hpp"
 
 // This the constructor and it is called when we create an object
-Blob::Blob(float startX, float startY)
+Bubble::Bubble(float startX, float startY)
 {
     position.x = startX;
     position.y = startY;
@@ -14,41 +14,56 @@ Blob::Blob(float startX, float startY)
     ballShape.setPosition(position);
 }
 
-sf::FloatRect Blob::getPosition()
+sf::FloatRect Bubble::getPosition()
 {
     return ballShape.getGlobalBounds();
 }
 
-sf::RectangleShape Blob::getShape()
+sf::RectangleShape Bubble::getShape()
 {
     return ballShape;
 }
 
-float Blob::getXVelocity()
+float Bubble::getXVelocity()
 {
     return xVelocity;
 }
 
-void Blob::reboundSides()
+void Bubble::reboundSides()
 {
     xVelocity = -xVelocity;
 }
 
-void Blob::reboundBatOrTop()
+void Bubble::reboundBatOrTop()
 {
     position.y -= (yVelocity * 30);
     yVelocity = -yVelocity;
 
 }
 
-void Blob::hitBottom()
+void Bubble::hitBottom()
 {
     position.y = 1;
     position.x = 500;
 }
 
-void Blob::update()
+void Bubble::update(sf::RenderWindow &window)
 {
+    if (getPosition().top > window.getSize().y)
+    {
+        reboundBatOrTop();
+    }
+
+    if (getPosition().left < 0 || getPosition().left + 10 > window.getSize().x)
+    {
+        reboundSides();
+    }
+
+    if (getPosition().top < 0)
+    {
+        reboundBatOrTop();
+    }
+
     // Update the ball position variables
     position.y += yVelocity;
     position.x += xVelocity;

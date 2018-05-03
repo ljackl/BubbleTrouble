@@ -14,7 +14,7 @@ class GameState;
 #include <vector>
 
 #include <SFML/Graphics.hpp>
-#include "Blob.hpp"
+#include "Bubble.hpp"
 #include "states/GameState.hpp"
 
 class Game {

@@ -3,10 +3,12 @@
 //
 
 #include "SplashGameState.hpp"
-#include "../Game.hpp"
 
 SplashGameState::SplashGameState() {
-    blob = Blob(640 / 2, 1);
+
+    for( int i = 0; i < 10; i++ ) {
+        blobs.push_back(new Bubble(rand() % 100, rand() % 100));
+    }
 
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
 
@@ -14,8 +16,17 @@ SplashGameState::SplashGameState() {
     text.setCharacterSize(32);
 }
 
+SplashGameState::~SplashGameState() {
+    for (auto &item : blobs) {
+        delete item;
+    }
+    blobs.clear();
+}
+
 void SplashGameState::draw(sf::RenderWindow *window) {
-    window->draw(blob.getShape());
+    for (auto &item : blobs) {
+        window->draw(item->getShape());
+    }
 
     text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
                      window->getSize().y/2 - text.getGlobalBounds().height/2);
@@ -23,24 +34,10 @@ void SplashGameState::draw(sf::RenderWindow *window) {
     window->draw(text);
 }
 
-void SplashGameState::update() {
-    if (blob.getPosition().top > 480)
-    {
-        blob.reboundBatOrTop();
+void SplashGameState::update(sf::RenderWindow *window) {
+    for (auto &item : blobs) {
+        item->update(*window);
     }
-
-    if (blob.getPosition().left < 0 || blob.getPosition().left + 10 > 640)
-    {
-        blob.reboundSides();
-    }
-
-    if (blob.getPosition().top < 0)
-    {
-        blob.reboundBatOrTop();
-
-    }
-
-    blob.update();
 }
 
 void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
@@ -54,11 +51,10 @@ void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        //game->ChangeState(new MenuGameState());
+        game->ChangeState(new MenuGameState());
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-
         window->close();
     }
 }

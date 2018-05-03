@@ -3,8 +3,8 @@ project(BubbleTrouble)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(STATES src/states/GameState.hpp src/states/SplashGameState.hpp src/states/SplashGameState.cpp)
-set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.hpp src/Blob.cpp src/Blob.hpp ${STATES})
+set(STATES src/states/GameState.hpp src/states/SplashGameState.hpp src/states/SplashGameState.cpp src/states/MenuGameState.hpp src/states/MenuGameState.cpp src/states/PlayGameState.hpp src/states/PlayGameState.cpp)
+set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.hpp src/Bubble.cpp src/Bubble.hpp ${STATES})
 add_executable(BubbleTrouble ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")

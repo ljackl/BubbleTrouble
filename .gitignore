@@ -3,6 +3,7 @@ bin
 tmp
 out.log
 .DS_Store
+*.userprefs
 
 # clion binary output
 cmake-build-debug/

@@ -6,7 +6,9 @@
 
 Game::Game(int screenWidth, int screenHeight) : screenWidth(screenWidth),screenHeight(screenHeight) {
     isRunning = true;
-    window = new sf::RenderWindow(sf::VideoMode(640,480,32),"Bubble Trouble Remastered");
+    window = new sf::RenderWindow(sf::VideoMode(static_cast<unsigned int>(screenWidth),
+                                                static_cast<unsigned int>(screenHeight),
+                                                32), "Bubble Trouble Remastered");
 }
 
 Game::~Game() {
@@ -27,7 +29,7 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    states.back()->update();
+    states.back()->update(window);
 }
 
 void Game::draw() {
@@ -53,7 +55,10 @@ void Game::PushState(GameState* state)
 
 void Game::PopState()
 {
+    GameState* oldState = states.back();
     if ( !states.empty() ) {
         states.pop_back();
     }
+
+    delete oldState;
 }

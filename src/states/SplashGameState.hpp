@@ -6,18 +6,21 @@
 #define BUBBLETROUBLE_SPLASHGAMESTATE_H
 
 #include "GameState.hpp"
-#include "../Blob.hpp"
+#include "MenuGameState.hpp"
+#include "../Game.hpp"
+#include "../Bubble.hpp"
 
 class SplashGameState : public GameState {
 public:
-    Blob blob = Blob(0, 0);
+    std::vector<Bubble*> blobs;
 
     sf::Font font;
     sf::Text text;
 
     SplashGameState();
+    ~SplashGameState();
 
-    void update() override;
+    void update(sf::RenderWindow* window) override;
     void draw(sf::RenderWindow* window) override;
     void handleEvents(sf::RenderWindow* window, Game* game) override;
 };
