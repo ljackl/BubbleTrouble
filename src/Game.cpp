@@ -13,17 +13,6 @@ Game::~Game() {
     delete window;
 }
 
-void Game::init() {
-    blob = Blob(640 / 2, 1);
-
-    font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
-
-    text = sf::Text("Bubble Trouble Remastered",font,11);
-    text.setCharacterSize(32);
-    text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
-                     window->getSize().y/2 - text.getGlobalBounds().height/2);
-}
-
 void Game::handleEvents() {
     states.back()->handleEvents(window, this);
 
@@ -38,23 +27,7 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    if (blob.getPosition().top > 480)
-    {
-        blob.reboundBatOrTop();
-    }
-
-    if (blob.getPosition().left < 0 || blob.getPosition().left + 10 > 640)
-    {
-        blob.reboundSides();
-    }
-
-    if (blob.getPosition().top < 0)
-    {
-        blob.reboundBatOrTop();
-
-    }
-
-    blob.update();
+    states.back()->update();
 }
 
 void Game::draw() {
@@ -62,8 +35,6 @@ void Game::draw() {
 
     states.back()->draw(window);
 
-    //window->draw(text);
-    window->draw(blob.getShape());
     window->display();
 }
 
@@ -73,13 +44,11 @@ void Game::ChangeState(GameState *state) {
     }
 
     states.push_back(state);
-    //states.back()->Init();
 }
 
 void Game::PushState(GameState* state)
 {
     states.push_back(state);
-    //states.back()->Init();
 }
 
 void Game::PopState()

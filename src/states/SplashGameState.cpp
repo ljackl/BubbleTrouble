@@ -3,15 +3,20 @@
 //
 
 #include "SplashGameState.hpp"
-#include "MenuGameState.hpp"
 #include "../Game.hpp"
 
-void SplashGameState::draw(sf::RenderWindow *window) {
-    sf::Font font;
+SplashGameState::SplashGameState() {
+    blob = Blob(640 / 2, 1);
+
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
 
-    sf::Text text = sf::Text("Bubble Trouble Remastered\nSplash Screen", font, 11);
+    text = sf::Text("Bubble Trouble Remastered",font,11);
     text.setCharacterSize(32);
+}
+
+void SplashGameState::draw(sf::RenderWindow *window) {
+    window->draw(blob.getShape());
+
     text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
                      window->getSize().y/2 - text.getGlobalBounds().height/2);
 
@@ -19,7 +24,23 @@ void SplashGameState::draw(sf::RenderWindow *window) {
 }
 
 void SplashGameState::update() {
+    if (blob.getPosition().top > 480)
+    {
+        blob.reboundBatOrTop();
+    }
 
+    if (blob.getPosition().left < 0 || blob.getPosition().left + 10 > 640)
+    {
+        blob.reboundSides();
+    }
+
+    if (blob.getPosition().top < 0)
+    {
+        blob.reboundBatOrTop();
+
+    }
+
+    blob.update();
 }
 
 void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
@@ -33,7 +54,7 @@ void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        game->ChangeState(new MenuGameState());
+        //game->ChangeState(new MenuGameState());
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
@@ -41,5 +62,3 @@ void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
         window->close();
     }
 }
-
-

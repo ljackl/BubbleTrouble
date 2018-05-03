@@ -9,7 +9,6 @@
 int main() {
     Game game(640,480);
 
-    game.init();
     game.ChangeState( new SplashGameState() );
 
     while (game.running())

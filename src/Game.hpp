@@ -20,21 +20,15 @@ class GameState;
 class Game {
 private:
     sf::RenderWindow* window;
-    sf::Font font;
-    sf::Text text;
 
     int screenWidth;
     int screenHeight;
     bool isRunning;
     std::vector<GameState*> states;
 
-    Blob blob = Blob(0, 0);
-
 public:
     Game(int screenWidth, int screenHeight);
     ~Game();
-
-    void init();
 
     bool running() { return isRunning; }
 
