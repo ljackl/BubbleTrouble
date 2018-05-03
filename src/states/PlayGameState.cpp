@@ -33,6 +33,6 @@ void PlayGameState::handleEvents(sf::RenderWindow *window, Game *game) {
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
-        game->PopState();
+        game->popState();
     }
 }

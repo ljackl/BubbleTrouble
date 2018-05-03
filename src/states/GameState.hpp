@@ -5,6 +5,10 @@
 #ifndef BUBBLETROUBLE_GAMESTATE_H
 #define BUBBLETROUBLE_GAMESTATE_H
 
+#ifdef _WIN32
+#include "stdafx.h"
+#endif
+
 #include <SFML/Graphics.hpp>
 
 class Game;

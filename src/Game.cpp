@@ -40,7 +40,7 @@ void Game::draw() {
     window->display();
 }
 
-void Game::ChangeState(GameState *state) {
+void Game::changeState(GameState *state) {
     if ( !states.empty() ) {
         states.pop_back();
     }
@@ -48,12 +48,12 @@ void Game::ChangeState(GameState *state) {
     states.push_back(state);
 }
 
-void Game::PushState(GameState* state)
+void Game::pushState(GameState *state)
 {
     states.push_back(state);
 }
 
-void Game::PopState()
+void Game::popState()
 {
     GameState* oldState = states.back();
     if ( !states.empty() ) {

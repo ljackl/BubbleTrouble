@@ -46,15 +46,17 @@ void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
     while(window->pollEvent(event)) {
         if(event.type == sf::Event::Closed){
             window->close();
+            game->end();
         }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        game->ChangeState(new MenuGameState());
+        game->changeState(new MenuGameState());
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
     {
         window->close();
+        game->end();
     }
 }

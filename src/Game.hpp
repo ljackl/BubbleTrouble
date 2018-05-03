@@ -31,10 +31,11 @@ public:
     ~Game();
 
     bool running() { return isRunning; }
+    bool end() { isRunning = false; }
 
-    void ChangeState(GameState* state);
-    void PushState(GameState* state);
-    void PopState();
+    void changeState(GameState *state);
+    void pushState(GameState *state);
+    void popState();
 
     void handleEvents();
     void update();

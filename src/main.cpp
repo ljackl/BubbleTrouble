@@ -9,7 +9,7 @@
 int main() {
     Game game(640,480);
 
-    game.ChangeState( new SplashGameState() );
+    game.changeState(new SplashGameState());
 
     while (game.running())
     {

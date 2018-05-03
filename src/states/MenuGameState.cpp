@@ -35,11 +35,12 @@ void MenuGameState::handleEvents(sf::RenderWindow *window, Game *game) {
     while(window->pollEvent(event)) {
         if(event.type == sf::Event::Closed){
             window->close();
+            game->end();
         }
 
         if(event.type == sf::Event::MouseButtonReleased && HandleClick(event.mouseButton.x,event.mouseButton.y) == Play)
         {
-            game->PushState(new PlayGameState());
+            game->pushState(new PlayGameState());
         }
     }
 }
