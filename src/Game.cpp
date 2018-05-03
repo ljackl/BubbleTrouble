@@ -25,6 +25,8 @@ void Game::init() {
 }
 
 void Game::handleEvents() {
+    states.back()->handleEvents(window, this);
+
     sf::Event event;
 
     while(window->pollEvent(event)) {
@@ -57,7 +59,32 @@ void Game::update() {
 
 void Game::draw() {
     window->clear(sf::Color::Black);
-    window->draw(text);
+
+    states.back()->draw(window);
+
+    //window->draw(text);
     window->draw(blob.getShape());
     window->display();
+}
+
+void Game::ChangeState(GameState *state) {
+    if ( !states.empty() ) {
+        states.pop_back();
+    }
+
+    states.push_back(state);
+    //states.back()->Init();
+}
+
+void Game::PushState(GameState* state)
+{
+    states.push_back(state);
+    //states.back()->Init();
+}
+
+void Game::PopState()
+{
+    if ( !states.empty() ) {
+        states.pop_back();
+    }
 }
