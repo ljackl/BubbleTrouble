@@ -5,14 +5,14 @@
 #include "Game.hpp"
 
 int main() {
-    Game *game = new Game();
-    game->init();
+    Game game(640,480);
 
-    while (game->running())
+    game.init();
+    while (game.running())
     {
-        game->handleEvents();
-        game->update();
-        game->draw();
+        game.handleEvents();
+        game.update();
+        game.draw();
     }
 
     return 0;

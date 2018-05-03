@@ -18,11 +18,13 @@ private:
     sf::Font font;
     sf::Text text;
 
+    int screenWidth;
+    int screenHeight;
     bool isRunning;
     Blob blob = Blob(0, 0);
 
 public:
-    Game();
+    Game(int screenWidth, int screenHeight);
     ~Game();
 
     void init();

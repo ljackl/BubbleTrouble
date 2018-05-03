@@ -4,17 +4,17 @@
 
 #include "Game.hpp"
 
-Game::Game()
-{}
+Game::Game(int screenWidth, int screenHeight) : screenWidth(screenWidth),screenHeight(screenHeight) {
+    isRunning = true;
+    window = new sf::RenderWindow(sf::VideoMode(640,480,32),"Bubble Trouble Remastered");
+}
 
-Game::~Game()
-{}
+Game::~Game() {
+    delete window;
+}
 
 void Game::init() {
-    isRunning = true;
     blob = Blob(640 / 2, 1);
-
-    window = new sf::RenderWindow(sf::VideoMode(640,480,32),"Bubble Trouble Remastered");
 
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
 
