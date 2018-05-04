@@ -9,6 +9,8 @@ Game::Game(int screenWidth, int screenHeight) : screenWidth(screenWidth),screenH
     window = new sf::RenderWindow(sf::VideoMode(static_cast<unsigned int>(screenWidth),
                                                 static_cast<unsigned int>(screenHeight),
                                                 32), "Bubble Trouble Remastered");
+
+    window->setFramerateLimit(60);
 }
 
 Game::~Game() {
@@ -28,8 +30,8 @@ void Game::handleEvents() {
     }
 }
 
-void Game::update() {
-    states.back()->update(window);
+void Game::update(sf::Time delta) {
+    states.back()->update(window, delta);
 }
 
 void Game::draw() {
