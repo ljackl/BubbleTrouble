@@ -1,0 +1,21 @@
+Daily Standup for [Group 1 / BubbleTrouble / Wk9]
+Date: 04/05/2018
+
+Talking Points
+============================
+Things I've done
+* Did some more research on SFML sprites
+* Started getting some basic assets and posted them on a google drive folder
+
+Things that were blocking me
+* nothing blocking me per say but my other classes have caused me to be inactive in slack
+
+Still working on
+* Getting all the assets needed
+
+Things I plan on doing
+* Finish with asset acqusiition
+* Start designing unit tests
+
+General status
+* Feeling Okay
