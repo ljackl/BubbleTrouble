@@ -41,7 +41,7 @@ public:
     void reboundSides();
     void reboundBottomOrTop();
 
-    void update(sf::RenderWindow &window);
+    void update(sf::RenderWindow &window, sf::Time delta);
 
 };
 

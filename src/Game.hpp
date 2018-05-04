@@ -38,7 +38,7 @@ public:
     void popState();
 
     void handleEvents();
-    void update();
+    void update(sf::Time delta);
     void draw();
 };
 

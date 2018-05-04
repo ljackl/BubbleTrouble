@@ -67,8 +67,8 @@ void PlayGameState::handleEvents(sf::RenderWindow *window, Game *game) {
     }
 }
 
-void PlayGameState::update(sf::RenderWindow *window) {
+void PlayGameState::update(sf::RenderWindow *window, sf::Time delta) {
     for (auto &item : bubbles) {
-        item->update(*window);
+        item->update(*window, delta);
     }
 }

@@ -15,7 +15,7 @@ public:
     SplashGameState();
     ~SplashGameState();
 
-    void update(sf::RenderWindow* window) override;
+    void update(sf::RenderWindow* window, sf::Time delta) override;
     void draw(sf::RenderWindow* window) override;
     void handleEvents(sf::RenderWindow* window, Game* game) override;
 

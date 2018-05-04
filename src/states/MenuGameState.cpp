@@ -45,7 +45,7 @@ void MenuGameState::handleEvents(sf::RenderWindow *window, Game *game) {
     }
 }
 
-void MenuGameState::update(sf::RenderWindow* window) {
+void MenuGameState::update(sf::RenderWindow* window, sf::Time delta) {
 
 }
 
