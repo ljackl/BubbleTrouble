@@ -7,7 +7,7 @@
 SplashGameState::SplashGameState() {
 
     for( int i = 0; i < 10; i++ ) {
-        blobs.push_back(new Bubble(rand() % 100, rand() % 100));
+        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_SPLASHSCREEN));
     }
 
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
@@ -17,27 +17,10 @@ SplashGameState::SplashGameState() {
 }
 
 SplashGameState::~SplashGameState() {
-    for (auto &item : blobs) {
+    for (auto &item : bubbles) {
         delete item;
     }
-    blobs.clear();
-}
-
-void SplashGameState::draw(sf::RenderWindow *window) {
-    for (auto &item : blobs) {
-        window->draw(item->getShape());
-    }
-
-    text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
-                     window->getSize().y/2 - text.getGlobalBounds().height/2);
-
-    window->draw(text);
-}
-
-void SplashGameState::update(sf::RenderWindow *window) {
-    for (auto &item : blobs) {
-        item->update(*window);
-    }
+    bubbles.clear();
 }
 
 void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
@@ -59,4 +42,21 @@ void SplashGameState::handleEvents(sf::RenderWindow* window, Game* game) {
         window->close();
         game->end();
     }
+}
+
+void SplashGameState::update(sf::RenderWindow *window) {
+    for (auto &item : bubbles) {
+        item->update(*window);
+    }
+}
+
+void SplashGameState::draw(sf::RenderWindow *window) {
+    for (auto &item : bubbles) {
+        window->draw(item->getShape());
+    }
+
+    text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
+                     window->getSize().y/2 - text.getGlobalBounds().height/2);
+
+    window->draw(text);
 }

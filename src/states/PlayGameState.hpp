@@ -23,7 +23,7 @@ private:
 
     sf::Texture groundtexture;
     sf::Sprite groundSprite;
-
+    std::vector<Bubble*> bubbles;
 
     sf::Font font;
     sf::Text text;

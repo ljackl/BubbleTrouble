@@ -12,17 +12,18 @@
 
 class SplashGameState : public GameState {
 public:
-    std::vector<Bubble*> blobs;
-
-    sf::Font font;
-    sf::Text text;
-
     SplashGameState();
     ~SplashGameState();
 
     void update(sf::RenderWindow* window) override;
     void draw(sf::RenderWindow* window) override;
     void handleEvents(sf::RenderWindow* window, Game* game) override;
+
+private:
+    std::vector<Bubble*> bubbles;
+
+    sf::Font font;
+    sf::Text text;
 };
 
 
