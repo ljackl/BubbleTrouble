@@ -18,6 +18,8 @@ public:
     void handleEvents(sf::RenderWindow* window, Game* game) override;
 
 private:
+    std::vector<Bubble*> bubbles;
+
     sf::Font font;
     sf::Text text;
 };

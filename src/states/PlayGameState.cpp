@@ -5,21 +5,14 @@
 #include "PlayGameState.hpp"
 
 PlayGameState::PlayGameState() {
+    for( int i = 0; i < 10; i++ ) {
+        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
+    }
+
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
 
     text = sf::Text("Bubble Trouble Remastered\nPlaying",font,11);
     text.setCharacterSize(32);
-}
-
-void PlayGameState::update(sf::RenderWindow *window) {
-
-}
-
-void PlayGameState::draw(sf::RenderWindow *window) {
-    text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
-                     window->getSize().y/2 - text.getGlobalBounds().height/2);
-
-    window->draw(text);
 }
 
 void PlayGameState::handleEvents(sf::RenderWindow *window, Game *game) {
@@ -35,4 +28,21 @@ void PlayGameState::handleEvents(sf::RenderWindow *window, Game *game) {
     {
         game->popState();
     }
+}
+
+void PlayGameState::update(sf::RenderWindow *window) {
+    for (auto &item : bubbles) {
+        item->update(*window);
+    }
+}
+
+void PlayGameState::draw(sf::RenderWindow *window) {
+    for (auto &item : bubbles) {
+        window->draw(item->getShape());
+    }
+
+    text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
+                     window->getSize().y/2 - text.getGlobalBounds().height/2);
+
+    window->draw(text);
 }
