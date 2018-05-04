@@ -1,0 +1,22 @@
+Daily Standup for [Group 1 / BubbleTrouble / Wk9]
+Date: 04/05/2018
+
+Talking Points
+============================
+Things I've done
+* Fleshed out the Menu Controllers with basic navigation and button elements
+* Implemented basic play state from menu (with bouncing "bubbles")
+* Bubble physics
+* Delta time for frame independent updating
+
+Things that were blocking me
+* N/A
+
+Still working on
+* N/A
+
+Plan on doing
+* Implementing graphics for Bubbles
+
+General status
+* A bit behind schedule due to other units
