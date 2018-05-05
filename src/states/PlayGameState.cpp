@@ -48,15 +48,16 @@ void PlayGameState::draw(sf::RenderWindow *window) {
     window->draw(text);
 
     for (auto &item : bubbles) {
-        window->draw(item->getShape());
+        item->draw(window);
     }
-
-    window->draw(player.getShape());
-
+    
     // Draw Bullets
     for (auto &item : bullets) {
         item->draw(window);
     }
+
+    player.draw(window);
+
 }
 
 void PlayGameState::handleEvents(sf::RenderWindow *window, Game *game) {
