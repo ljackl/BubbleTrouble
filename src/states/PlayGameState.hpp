@@ -18,6 +18,13 @@ public:
     void handleEvents(sf::RenderWindow* window, Game* game) override;
 
 private:
+    sf::Texture backgroundtexture;
+    sf::Sprite backgroundSprite;
+
+    sf::Texture groundtexture;
+    sf::Sprite groundSprite;
+
+
     sf::Font font;
     sf::Text text;
 };

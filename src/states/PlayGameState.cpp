@@ -9,6 +9,15 @@ PlayGameState::PlayGameState() {
 
     text = sf::Text("Bubble Trouble Remastered\nPlaying",font,11);
     text.setCharacterSize(32);
+
+    // Background loading
+    backgroundtexture.loadFromFile("resources/images/background.png");
+    backgroundSprite.setTexture(backgroundtexture);
+
+    // Ground loading
+    groundtexture.loadFromFile("resources/images/chocoMid.png");
+    groundtexture.setRepeated(true);
+    groundSprite.setTexture(groundtexture);
 }
 
 void PlayGameState::update(sf::RenderWindow *window) {
@@ -16,6 +25,23 @@ void PlayGameState::update(sf::RenderWindow *window) {
 }
 
 void PlayGameState::draw(sf::RenderWindow *window) {
+    // TODO
+    // Implementing view for window size independent drawing
+    // https://www.sfml-dev.org/tutorials/2.1/graphics-view.php
+
+    // Background
+    backgroundSprite.setPosition(sf::Vector2f(0, 0));
+    backgroundSprite.setScale(
+            window->getSize().x / backgroundSprite.getLocalBounds().width,
+            window->getSize().y / backgroundSprite.getLocalBounds().height);
+
+    // Ground
+    groundSprite.setTextureRect(sf::IntRect(0, 0, window->getSize().x, groundtexture.getSize().y));
+    groundSprite.setPosition(sf::Vector2f(0, window->getSize().y - groundSprite.getLocalBounds().height));
+
+    window->draw(backgroundSprite);
+    window->draw(groundSprite);
+
     text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
                      window->getSize().y/2 - text.getGlobalBounds().height/2);
 
