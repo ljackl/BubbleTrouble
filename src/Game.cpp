@@ -9,6 +9,10 @@ Game::Game(int screenWidth, int screenHeight) : screenWidth(screenWidth),screenH
     window = new sf::RenderWindow(sf::VideoMode(static_cast<unsigned int>(screenWidth),
                                                 static_cast<unsigned int>(screenHeight),
                                                 32), "Bubble Trouble Remastered");
+
+    music.openFromFile("resources/audio/Hall of the Mountain King.ogg");
+    music.setVolume(50);
+    music.play();
 }
 
 Game::~Game() {

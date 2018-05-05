@@ -1,3 +1,15 @@
 Credits
 
-PxPlus_IBM_EGA8.ttf : int10h.org/oldschool-pc-fonts © 2016 VileR
+Fonts
+PxPlus_IBM_EGA8.ttf
+---
+int10h.org/oldschool-pc-fonts © 2016 VileR
+
+Images
+
+Audio
+Hall of the Mountain King.ogg
+---
+Hall of the Mountain King Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0 License
+http://creativecommons.org/licenses/by/3.0/

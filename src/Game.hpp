@@ -14,12 +14,14 @@ class GameState;
 #include <vector>
 
 #include <SFML/Graphics.hpp>
+#include "SFML/Audio.hpp"
 #include "Bubble.hpp"
 #include "states/GameState.hpp"
 
 class Game {
 private:
     sf::RenderWindow* window;
+    sf::Music music;
 
     int screenWidth;
     int screenHeight;
