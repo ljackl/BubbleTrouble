@@ -3,10 +3,29 @@ project(BubbleTrouble)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(STATES src/states/GameState.hpp src/states/SplashGameState.hpp src/states/SplashGameState.cpp src/states/MenuGameState.hpp src/states/MenuGameState.cpp src/states/PlayGameState.hpp src/states/PlayGameState.cpp)
-set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.hpp src/Bubble.cpp src/Bubble.hpp ${STATES})
-add_executable(BubbleTrouble ${SOURCE_FILES})
+# For library structure + catch unit testing refer:
+# https://stackoverflow.com/questions/31363090/c-testing-classes-with-catch
 
+# Includes
+include_directories(include)
+
+# Game state files
+set(SOURCE_CORE src/Game.cpp src/Game.hpp src/Bubble.cpp src/Bubble.hpp src/TestClass.cpp src/TestClass.hpp)
+set(SOURCE_STATES src/states/GameState.hpp src/states/SplashGameState.hpp src/states/SplashGameState.cpp src/states/MenuGameState.hpp src/states/MenuGameState.cpp src/states/PlayGameState.hpp src/states/PlayGameState.cpp)
+set(SOURCE_FILES ${SOURCE_CORE} ${SOURCE_STATES})
+
+# Create BubbleTrouble Library
+add_library(BTL ${SOURCE_FILES})
+
+# Create BubbleTrouble Executable
+add_executable(BubbleTrouble src/main.cpp)
+target_link_libraries(BubbleTrouble BTL)
+
+# Create BubbleTrouble Test
+add_executable(BubbleTrouble_TEST unit_tests/Test.cpp)
+target_link_libraries(BubbleTrouble_TEST BTL)
+
+# SFML Loading
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_package(SFML REQUIRED system window graphics network audio)
 if (SFML_FOUND)
