@@ -8,6 +8,7 @@
 #include "GameState.hpp"
 #include "MenuGameState.hpp"
 #include "../Game.hpp"
+#include "../Player.hpp"
 
 class PlayGameState : public GameState {
 public:
@@ -24,6 +25,7 @@ private:
     sf::Texture groundtexture;
     sf::Sprite groundSprite;
     std::vector<Bubble*> bubbles;
+    Player player = Player(50, 150);
 
     sf::Font font;
     sf::Text text;
