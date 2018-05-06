@@ -1,6 +1,9 @@
 //
 // Created by pat on 5/05/18.
 //
+// Catch Tutorial:
+// https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md
+//
 
 #ifdef _WIN32
 #include "stdafx.h"

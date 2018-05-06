@@ -4,7 +4,7 @@
 
 #include "Player.hpp"
 
-Player::Player(float startX, float startY) {
+Player::Player(float startX, float startY, sf::Texture& texture, const std::vector<Animation>& animations) {
     position.x = startX;
     position.y = startY;
 
@@ -16,6 +16,15 @@ Player::Player(float startX, float startY) {
 
     shape.setSize(sf::Vector2f(10, 10));
     shape.setPosition(position);
+
+    this->sprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
+    this->sprite.setTexture(texture);
+    this->animationHandler.frameSize = sf::IntRect(0, 0, 100, 100);
+    for(auto animation : animations)
+    {
+        this->animationHandler.addAnimimatin(animation);
+    }
+    this->animationHandler.update(0.0f);
 }
 
 void Player::handleEvents() {
@@ -32,7 +41,7 @@ void Player::handleEvents() {
     }
 }
 
-void Player::update(sf::RenderWindow &window, sf::Time delta)
+void Player::update(sf::RenderWindow& window, sf::Time delta)
 {
     if (getPosition().left < 0)
     {
@@ -56,7 +65,21 @@ void Player::update(sf::RenderWindow &window, sf::Time delta)
     shape.setPosition(position);
 }
 
-void Player::draw(sf::RenderWindow *window) {
+void Player::draw(sf::RenderWindow& window, sf::Time delta) {
     // Draw this
-    window->draw(getShape());
+    window.draw(getShape());
+
+    /* Change the sprite to reflect the tile variant */
+    //this->animationHandler.changeAnim(1);
+
+    /* Update the animation */
+    this->animationHandler.update(delta.asSeconds());
+
+    /* Update the sprite */
+    this->sprite.setTextureRect(this->animationHandler.bounds);
+
+
+    this->sprite.setPosition(position);
+    /* Draw the tile */
+    window.draw(this->sprite);
 }

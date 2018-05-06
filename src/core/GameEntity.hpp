@@ -11,6 +11,7 @@
 
 #include <cmath>
 #include <SFML/Graphics.hpp>
+#include "AnimationHandler.hpp"
 
 class GameEntity {
 protected:
@@ -21,13 +22,16 @@ protected:
 
     sf::RectangleShape shape;
 
+    AnimationHandler animationHandler;
+    sf::Sprite sprite;
+
 public:
     sf::FloatRect getPosition();
     sf::RectangleShape getShape();
 
     virtual void handleEvents() = 0;
-    virtual void update(sf::RenderWindow &window, sf::Time delta) = 0;
-    virtual void draw(sf::RenderWindow* window) = 0;
+    virtual void update(sf::RenderWindow& window, sf::Time delta) = 0;
+    virtual void draw(sf::RenderWindow& window, sf::Time delta) = 0;
 };
 
 

@@ -15,11 +15,12 @@
 
 class Player : public GameEntity {
 public:
-    Player(float startX, float startY);
+    Player() {}
+    Player(float startX, float startY, sf::Texture& texture, const std::vector<Animation>& animations);
 
     void handleEvents() override;
-    void update(sf::RenderWindow &window, sf::Time delta) override;
-    void draw(sf::RenderWindow* window) override;
+    void update(sf::RenderWindow& window, sf::Time delta) override;
+    void draw(sf::RenderWindow& window, sf::Time delta) override;
 };
 
 
