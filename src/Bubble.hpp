@@ -9,34 +9,39 @@
 #include "stdafx.h"
 #endif
 
+#include <cmath>
 #include <SFML/Graphics.hpp>
+
+// TODO : https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum#18335862
+enum State
+{
+    STATE_SPLASHSCREEN,
+    STATE_PLAY
+};
 
 class Bubble
 {
 private:
+    // Vector's : https://processing.org/tutorials/pvector/
     sf::Vector2f position;
+    sf::Vector2f velocity;
+    sf::Vector2f acceleration;
 
     sf::RectangleShape ballShape;
 
-    float xVelocity = .2f;
-    float yVelocity = .2f;
+    State state;
 
 public:
-    Bubble(float startX, float startY);
+    Bubble(float startX, float startY, State pState);
 
     sf::FloatRect getPosition();
 
     sf::RectangleShape getShape();
 
-    float getXVelocity();
-
     void reboundSides();
+    void reboundBottomOrTop();
 
-    void reboundBatOrTop();
-
-    void hitBottom();
-
-    void update(sf::RenderWindow &window);
+    void update(sf::RenderWindow &window, sf::Time delta);
 
 };
 
