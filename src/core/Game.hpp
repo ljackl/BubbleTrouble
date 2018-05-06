@@ -9,22 +9,18 @@
 #include "stdafx.h"
 #endif
 
-class GameState;
-
-#include <vector>
-
+#include <stack>
 #include <SFML/Graphics.hpp>
-#include "Bubble.hpp"
-#include "states/GameState.hpp"
+
+class GameState;
 
 class Game {
 private:
     sf::RenderWindow* window;
 
-    int screenWidth;
-    int screenHeight;
+    std::stack<GameState*> states;
+
     bool isRunning;
-    std::vector<GameState*> states;
 
 public:
     Game(int screenWidth, int screenHeight);
@@ -33,13 +29,12 @@ public:
     bool running() { return isRunning; }
     bool end() { isRunning = false; }
 
+    GameState* peekState();
     void changeState(GameState *state);
     void pushState(GameState *state);
     void popState();
 
-    void handleEvents();
-    void update(sf::Time delta);
-    void draw();
+    void run();
 };
 
 

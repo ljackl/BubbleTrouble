@@ -10,9 +10,12 @@
 #endif
 
 #include <SFML/Graphics.hpp>
+#include "../core/Game.hpp"
 
 class Game;
-// https://www.binpress.com/tutorial/creating-a-city-building-game-with-sfml-part-1-state-manager/123
+
+// Better state management
+// TODO : https://www.binpress.com/tutorial/creating-a-city-building-game-with-sfml-part-1-state-manager/123
 class GameState {
 public:
     virtual void update(sf::RenderWindow* window, sf::Time delta) = 0;

@@ -7,7 +7,6 @@
 
 #include "GameState.hpp"
 #include "PlayGameState.hpp"
-#include "../Game.hpp"
 
 #include <list>
 

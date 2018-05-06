@@ -53,8 +53,9 @@ void PlayGameState::draw(sf::RenderWindow *window) {
 
     window->draw(player.getShape());
 
-    for (auto &item : player.bullets) {
-        window->draw(item->getShape());
+    // Draw Bullets
+    for (auto &item : bullets) {
+        item->draw(window);
     }
 }
 
@@ -73,14 +74,25 @@ void PlayGameState::handleEvents(sf::RenderWindow *window, Game *game) {
     }
 
     player.handleEvents();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        fireBullet();
+    }
 }
 
 void PlayGameState::update(sf::RenderWindow *window, sf::Time delta) {
+    player.update(*window, delta);
+
+    for (auto &item : bullets) {
+        item->update(*window, delta);
+    }
+
     for (auto &item : bubbles) {
         item->update(*window, delta);
     }
 
-    player.update(*window, delta);
+
 }
 
+void PlayGameState::fireBullet() {
+    bullets.push_back(new Bullet(player.getPosition()));
 }
