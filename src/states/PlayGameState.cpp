@@ -28,16 +28,26 @@ void PlayGameState::handleEvents(sf::RenderWindow *window, Game *game) {
     {
         game->popState();
     }
+
+    player.handleEvents();
 }
 
 void PlayGameState::update(sf::RenderWindow *window, sf::Time delta) {
     for (auto &item : bubbles) {
         item->update(*window, delta);
     }
+
+    player.update(*window, delta);
 }
 
 void PlayGameState::draw(sf::RenderWindow *window) {
     for (auto &item : bubbles) {
+        window->draw(item->getShape());
+    }
+
+    window->draw(player.getShape());
+
+    for (auto &item : player.bullets) {
         window->draw(item->getShape());
     }
 
