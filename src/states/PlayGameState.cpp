@@ -82,3 +82,5 @@ void PlayGameState::update(sf::RenderWindow *window, sf::Time delta) {
 
     player.update(*window, delta);
 }
+
+}
