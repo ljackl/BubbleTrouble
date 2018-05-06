@@ -4,9 +4,9 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet(float startX, float startY) {
-    position.x = startX;
-    position.y = startY;
+Bullet::Bullet(sf::FloatRect startPosition) {
+    position.x = startPosition.left;
+    position.y = startPosition.top;
 
     velocity.x = 0.0f;
     velocity.y = -9.8f;
@@ -14,17 +14,8 @@ Bullet::Bullet(float startX, float startY) {
     acceleration.x = 0.0f;
     acceleration.y = 0.0f;
 
-    ballShape.setSize(sf::Vector2f(2, 2));
-    ballShape.setPosition(position);
-}
-
-sf::FloatRect Bullet::getPosition() {
-    return ballShape.getGlobalBounds();
-}
-
-sf::RectangleShape Bullet::getShape()
-{
-    return ballShape;
+    shape.setSize(sf::Vector2f(2, 2));
+    shape.setPosition(position);
 }
 
 void Bullet::update(sf::RenderWindow &window, sf::Time delta)
@@ -44,5 +35,10 @@ void Bullet::update(sf::RenderWindow &window, sf::Time delta)
     position += velocity;
 
     // Move the ball and the bat
-    ballShape.setPosition(position);
+    shape.setPosition(position);
+}
+
+void Bullet::draw(sf::RenderWindow *window) {
+    // Draw this
+    window->draw(getShape());
 }

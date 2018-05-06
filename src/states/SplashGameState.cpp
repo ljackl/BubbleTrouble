@@ -52,7 +52,7 @@ void SplashGameState::update(sf::RenderWindow *window, sf::Time delta) {
 
 void SplashGameState::draw(sf::RenderWindow *window) {
     for (auto &item : bubbles) {
-        window->draw(item->getShape());
+        item->draw(window);
     }
 
     text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,

@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(include)
 
 # Game state files
-set(SOURCE_OTHER src/TestClass.cpp src/TestClass.hpp)
-set(SOURCE_CORE src/Game.cpp src/Game.hpp src/Bubble.cpp src/Bubble.hpp src/Player.cpp src/Player.hpp src/Bullet.cpp src/Bullet.hpp)
+set(SOURCE_OTHER src/other/TestClass.cpp src/other/TestClass.hpp)
+set(SOURCE_CORE src/core/Game.cpp src/core/Game.hpp src/core/Bubble.cpp src/core/Bubble.hpp src/core/Player.cpp src/core/Player.hpp src/core/Bullet.cpp src/core/Bullet.hpp src/core/GameEntity.cpp src/core/GameEntity.hpp)
 set(SOURCE_STATES src/states/GameState.hpp src/states/SplashGameState.hpp src/states/SplashGameState.cpp src/states/MenuGameState.hpp src/states/MenuGameState.cpp src/states/PlayGameState.hpp src/states/PlayGameState.cpp)
 set(SOURCE_FILES ${SOURCE_CORE} ${SOURCE_STATES} ${SOURCE_OTHER})
 

@@ -7,8 +7,7 @@
 
 #include "GameState.hpp"
 #include "MenuGameState.hpp"
-#include "../Game.hpp"
-#include "../Bubble.hpp"
+#include "../core/Bubble.hpp"
 
 class SplashGameState : public GameState {
 public:

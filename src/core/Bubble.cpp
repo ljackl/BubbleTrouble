@@ -33,18 +33,8 @@ Bubble::Bubble(float startX, float startY, State pState)
             break;
     }
 
-    ballShape.setSize(sf::Vector2f(10, 10));
-    ballShape.setPosition(position);
-}
-
-sf::FloatRect Bubble::getPosition()
-{
-    return ballShape.getGlobalBounds();
-}
-
-sf::RectangleShape Bubble::getShape()
-{
-    return ballShape;
+    shape.setSize(sf::Vector2f(10, 10));
+    shape.setPosition(position);
 }
 
 void Bubble::reboundSides()
@@ -110,5 +100,10 @@ void Bubble::update(sf::RenderWindow &window, sf::Time delta)
 
 
     // Move the ball and the bat
-    ballShape.setPosition(position);
+    shape.setPosition(position);
+}
+
+void Bubble::draw(sf::RenderWindow *window) {
+    // Draw this
+    window->draw(getShape());
 }

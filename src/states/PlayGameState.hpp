@@ -7,8 +7,10 @@
 
 #include "GameState.hpp"
 #include "MenuGameState.hpp"
-#include "../Game.hpp"
-#include "../Player.hpp"
+
+#include "../core/Player.hpp"
+#include "../core/Bubble.hpp"
+#include "../core/Bullet.hpp"
 
 class PlayGameState : public GameState {
 public:
@@ -20,10 +22,13 @@ public:
 
 private:
     std::vector<Bubble*> bubbles;
+    std::vector<Bullet*> bullets;
     Player player = Player(50, 150);
 
     sf::Font font;
     sf::Text text;
+
+    void fireBullet();
 };
 
 
