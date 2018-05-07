@@ -11,7 +11,7 @@
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "../src/other/TestClass.hpp"
+#include "../other/TestClass.hpp"
 
 TEST_CASE("addition") {
     TestClass test;

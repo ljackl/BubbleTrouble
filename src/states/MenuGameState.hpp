@@ -5,6 +5,10 @@
 #ifndef BUBBLETROUBLE_MENUGAMESTATE_H
 #define BUBBLETROUBLE_MENUGAMESTATE_H
 
+#ifdef _WIN32
+#include "stdafx.h"
+#endif
+
 #include "GameState.hpp"
 #include "PlayGameState.hpp"
 

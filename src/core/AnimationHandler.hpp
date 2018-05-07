@@ -5,6 +5,10 @@
 #ifndef BUBBLETROUBLE_ANIMATIONHANDLER_H
 #define BUBBLETROUBLE_ANIMATIONHANDLER_H
 
+#ifdef _WIN32
+#include "stdafx.h"
+#endif
+
 #include <SFML/Graphics.hpp>
 #include <vector>
 

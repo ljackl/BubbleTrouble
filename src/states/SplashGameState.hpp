@@ -5,7 +5,12 @@
 #ifndef BUBBLETROUBLE_SPLASHGAMESTATE_H
 #define BUBBLETROUBLE_SPLASHGAMESTATE_H
 
+#ifdef _WIN32
+#include "stdafx.h"
+#endif
+
 #include "GameState.hpp"
+#include "MenuGameState.hpp"
 #include "../core/Bubble.hpp"
 
 class SplashGameState : public GameState {

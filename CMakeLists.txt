@@ -24,7 +24,7 @@ add_executable(BubbleTrouble src/main.cpp)
 target_link_libraries(BubbleTrouble BTL)
 
 # Create BubbleTrouble Test
-add_executable(BubbleTrouble_TEST unit_tests/Test.cpp)
+add_executable(BubbleTrouble_TEST src/unit_tests/Test.cpp)
 target_link_libraries(BubbleTrouble_TEST BTL)
 
 # SFML Loading

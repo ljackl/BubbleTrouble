@@ -3,7 +3,6 @@
 //
 
 #include "SplashGameState.hpp"
-#include "MenuGameState.hpp"
 
 SplashGameState::SplashGameState(Game* game) {
     this->game = game;
