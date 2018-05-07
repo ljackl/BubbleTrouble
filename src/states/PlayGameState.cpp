@@ -2,6 +2,7 @@
 // Created by pat on 26/04/18.
 //
 
+#include <iostream>
 #include "PlayGameState.hpp"
 
 PlayGameState::PlayGameState(Game* game) {
@@ -11,10 +12,6 @@ PlayGameState::PlayGameState(Game* game) {
     this->view.setSize(pos);
     pos *= 0.5f;
     this->view.setCenter(pos);
-
-    for( int i = 0; i < 10; i++ ) {
-        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
-    }
 
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
 
@@ -27,8 +24,15 @@ PlayGameState::PlayGameState(Game* game) {
     this->game->textureManager.getRef("ground").setRepeated(true);
     groundSprite.setTexture(this->game->textureManager.getRef("ground"));
 
+    // Player Creation
     Animation staticAnim(0, 0, 1.0f);
-    player = Player(50, 50, this->game->textureManager.getRef("player"), { staticAnim });
+    player = Player(50, game->window.getSize().y - 10, this->game->textureManager.getRef("player"), { staticAnim });
+
+    // Bubble Creation
+    for( int i = 0; i < 10; i++ ) {
+        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
+    }
+
 }
 
 PlayGameState::~PlayGameState() {
@@ -80,6 +84,13 @@ void PlayGameState::handleEvents() {
             default: break;
         }
     }
+
+    // Using state checking instead of event
+    // this is because it can only handle one event (only one key)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        fireBullet();
+    }
+
     player.handleEvents();
 }
 
@@ -92,6 +103,14 @@ void PlayGameState::update(sf::Time delta) {
 
     for (auto &item : bubbles) {
         item->update(this->game->window, delta);
+    }
+
+    for (auto &bullet : bullets) {
+        for (auto &bubble : bubbles) {
+            if (isIntersecting(bullet->getShape(), bubble->getShape())) {
+                bullets.erase(std::remove(bullets.begin(), bullets.end(), bullet), bullets.end());
+            }
+        }
     }
 }
 
@@ -124,4 +143,8 @@ void PlayGameState::draw(sf::Time delta) {
 
 void PlayGameState::fireBullet() {
     bullets.push_back(new Bullet(player.getPosition()));
+}
+
+bool PlayGameState::isIntersecting(sf::RectangleShape shape1, sf::RectangleShape shape2) {
+    return shape1.getGlobalBounds().intersects(shape2.getGlobalBounds());
 }

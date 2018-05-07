@@ -37,6 +37,8 @@ private:
     sf::Text text;
 
     void fireBullet();
+
+    bool isIntersecting(sf::RectangleShape shape1, sf::RectangleShape shape2);
 };
 
 

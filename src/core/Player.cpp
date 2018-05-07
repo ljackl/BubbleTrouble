@@ -28,16 +28,15 @@ Player::Player(float startX, float startY, sf::Texture& texture, const std::vect
 }
 
 void Player::handleEvents() {
+    moving = false;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         // move left...
         acceleration.x = -3.0f;
+        moving = true;
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         // move right...
         acceleration.x = 3.0f;
-    } else {
-        // stop moving
-        acceleration.x = 0.0f;
-        velocity.x /= 1.05f;
+        moving = true;
     }
 }
 
@@ -50,6 +49,12 @@ void Player::update(sf::RenderWindow& window, sf::Time delta)
 
     if (getPosition().left + 10 > window.getSize().x) {
         position.x = 0;
+    }
+
+    if (!moving) {
+        // stop moving
+        acceleration.x = 0.0f;
+        velocity.x /= 1.05f;
     }
 
     velocity += acceleration * delta.asSeconds();

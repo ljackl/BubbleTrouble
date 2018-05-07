@@ -20,7 +20,7 @@ enum State
     STATE_PLAY
 };
 
-class Bubble : GameEntity {
+class Bubble : public GameEntity {
 
 
 public:

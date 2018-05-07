@@ -13,7 +13,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameEntity.hpp"
 
-class Bullet : GameEntity {
+class Bullet : public GameEntity {
 public:
     Bullet(sf::FloatRect startPosition);
 

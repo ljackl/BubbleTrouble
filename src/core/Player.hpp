@@ -14,6 +14,9 @@
 #include "GameEntity.hpp"
 
 class Player : public GameEntity {
+private:
+    bool moving = false;
+
 public:
     Player() {}
     Player(float startX, float startY, sf::Texture& texture, const std::vector<Animation>& animations);
