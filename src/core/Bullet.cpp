@@ -18,7 +18,7 @@ Bullet::Bullet(sf::FloatRect startPosition) {
     shape.setPosition(position);
 }
 
-void Bullet::update(sf::RenderWindow &window, sf::Time delta)
+void Bullet::update(sf::RenderWindow& window, sf::Time delta)
 {
     if (getPosition().top < 0)
     {
@@ -38,7 +38,7 @@ void Bullet::update(sf::RenderWindow &window, sf::Time delta)
     shape.setPosition(position);
 }
 
-void Bullet::draw(sf::RenderWindow *window) {
+void Bullet::draw(sf::RenderWindow& window, sf::Time delta) {
     // Draw this
-    window->draw(getShape());
+    window.draw(getShape());
 }

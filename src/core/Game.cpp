@@ -6,24 +6,24 @@
 #include "../states/SplashGameState.hpp"
 
 Game::Game(int screenWidth, int screenHeight) {
-    isRunning = true;
+    this->isRunning = true;
 
-    window = new sf::RenderWindow(sf::VideoMode(static_cast<unsigned int>(screenWidth),
+    this->loadTextures();
+
+    this->window.create(sf::VideoMode(static_cast<unsigned int>(screenWidth),
                                                 static_cast<unsigned int>(screenHeight),
                                                 32), "Bubble Trouble Remastered");
+    this->window.setFramerateLimit(60);
 
-    window->setFramerateLimit(60);
+    this->background.setTexture(this->textureManager.getRef("background"));
 }
 
 Game::~Game() {
     while(!this->states.empty()) popState();
-
-    delete window;
 }
 
 void Game::run() {
     sf::Clock clock;
-    changeState(new SplashGameState());
 
     while (running())
     {
@@ -32,15 +32,15 @@ void Game::run() {
         if(peekState() == nullptr) continue;
 
         // Handle Events
-        peekState()->handleEvents(window, this);
+        peekState()->handleEvents();
 
         // Update
-        peekState()->update(window, elapsed);
+        peekState()->update(elapsed);
 
         // Draw
-        window->clear(sf::Color::Black);
-        peekState()->draw(window);
-        window->display();
+        window.clear(sf::Color::Black);
+        peekState()->draw(elapsed);
+        window.display();
     }
 }
 
@@ -65,4 +65,10 @@ void Game::popState()
 GameState *Game::peekState() {
     if(this->states.empty()) return nullptr;
     return this->states.top();
+}
+
+void Game::loadTextures() {
+    textureManager.loadTexture("background", "resources/images/background.png");
+    textureManager.loadTexture("ground", "resources/images/ground.png");
+    textureManager.loadTexture("player", "resources/images/player.png");
 }

@@ -14,17 +14,21 @@
 
 class PlayGameState : public GameState {
 public:
-    PlayGameState();
+    explicit PlayGameState(Game* game);
+    ~PlayGameState();
 
-    void update(sf::RenderWindow* window, sf::Time delta) override;
-    void draw(sf::RenderWindow* window) override;
-    void handleEvents(sf::RenderWindow* window, Game* game) override;
+    void handleEvents() override;
+    void update(sf::Time delta) override;
+    void draw(sf::Time delta) override;
 
 private:
     std::vector<Bubble*> bubbles;
     std::vector<Bullet*> bullets;
-    Player player = Player(50, 150);
+    Player player;
 
+    sf::Sprite groundSprite;
+
+    sf::View view;
     sf::Font font;
     sf::Text text;
 

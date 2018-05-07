@@ -30,8 +30,8 @@ public:
     void reboundBottomOrTop();
 
     void handleEvents() override {}
-    void update(sf::RenderWindow &window, sf::Time delta) override;
-    void draw(sf::RenderWindow* window) override;
+    void update(sf::RenderWindow& window, sf::Time delta) override;
+    void draw(sf::RenderWindow& window, sf::Time delta) override;
 
 private:
     State state;

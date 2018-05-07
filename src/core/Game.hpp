@@ -11,18 +11,22 @@
 
 #include <stack>
 #include <SFML/Graphics.hpp>
+#include "TextureManager.hpp"
 
 class GameState;
 
 class Game {
 private:
-    sf::RenderWindow* window;
-
     std::stack<GameState*> states;
-
     bool isRunning;
 
+    void loadTextures();
+
 public:
+    sf::RenderWindow window;
+    TextureManager textureManager;
+    sf::Sprite background;
+
     Game(int screenWidth, int screenHeight);
     ~Game();
 

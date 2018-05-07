@@ -23,11 +23,11 @@ public:
         sf::Text buttonText;
     };
 
-    MenuGameState();
+    MenuGameState(Game* game);
 
-    void update(sf::RenderWindow* window, sf::Time delta) override;
-    void draw(sf::RenderWindow* window) override;
-    void handleEvents(sf::RenderWindow* window, Game* game) override;
+    void handleEvents() override;
+    void update(sf::Time delta) override;
+    void draw(sf::Time delta) override;
 
 private:
     sf::Font font;
@@ -35,6 +35,7 @@ private:
 
     std::list<MenuItem> menuItems;
 
+    sf::View view;
     MenuResult HandleClick(int x, int y);
 };
 

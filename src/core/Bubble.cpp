@@ -51,7 +51,7 @@ void Bubble::reboundBottomOrTop()
 
 }
 
-void Bubble::update(sf::RenderWindow &window, sf::Time delta)
+void Bubble::update(sf::RenderWindow& window, sf::Time delta)
 {
     switch (state)
     {
@@ -103,7 +103,7 @@ void Bubble::update(sf::RenderWindow &window, sf::Time delta)
     shape.setPosition(position);
 }
 
-void Bubble::draw(sf::RenderWindow *window) {
+void Bubble::draw(sf::RenderWindow& window, sf::Time delta) {
     // Draw this
-    window->draw(getShape());
+    window.draw(getShape());
 }

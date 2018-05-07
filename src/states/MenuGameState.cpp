@@ -4,11 +4,20 @@
 
 #include "MenuGameState.hpp"
 
-MenuGameState::MenuGameState() {
+MenuGameState::MenuGameState(Game* game) {
+    this->game = game;
+
+    sf::Vector2f pos = sf::Vector2f(this->game->window.getSize());
+    this->view.setSize(pos);
+    pos *= 0.5f;
+    this->view.setCenter(pos);
+
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
 
     text = sf::Text("Bubble Trouble Remastered\nMain Menu",font,11);
     text.setCharacterSize(32);
+    text.setPosition(game->window.getSize().x/2 - text.getGlobalBounds().width/2,
+                     game->window.getSize().y/2 - text.getGlobalBounds().height/2);
 
     // Play button
     MenuItem playButton;
@@ -29,36 +38,65 @@ MenuGameState::MenuGameState() {
     menuItems.push_back(playButton);
 }
 
-void MenuGameState::handleEvents(sf::RenderWindow *window, Game *game) {
+void MenuGameState::handleEvents() {
     sf::Event event;
 
-    while(window->pollEvent(event)) {
-        if(event.type == sf::Event::Closed){
-            window->close();
-            game->end();
-        }
-
-        if(event.type == sf::Event::MouseButtonReleased && HandleClick(event.mouseButton.x,event.mouseButton.y) == Play)
+    while(this->game->window.pollEvent(event))
+    {
+        switch(event.type)
         {
-            game->pushState(new PlayGameState());
+            /* Close the window */
+            case sf::Event::Closed:
+            {
+                this->game->window.close();
+                this->game->end();
+                break;
+            }
+            /* Resize the window */
+            case sf::Event::Resized:
+            {
+                this->view.setSize(event.size.width, event.size.height);
+                this->game->background.setPosition(this->game->window.mapPixelToCoords(sf::Vector2i(0, 0)));
+                this->game->background.setScale(
+                        float(event.size.width) / float(this->game->background.getTexture()->getSize().x),
+                        float(event.size.height) / float(this->game->background.getTexture()->getSize().y));
+                break;
+            }
+            case sf::Event::KeyPressed:
+            {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    this->game->window.close();
+                    this->game->end();
+                }
+                break;
+            }
+            case sf::Event::MouseButtonReleased:
+            {
+                if (HandleClick(event.mouseButton.x,event.mouseButton.y) == Play) {
+                    game->pushState(new PlayGameState(this->game));
+                }
+                break;
+            }
+            default: break;
         }
     }
 }
 
-void MenuGameState::update(sf::RenderWindow* window, sf::Time delta) {
+void MenuGameState::update(sf::Time delta) {
 
 }
 
-void MenuGameState::draw(sf::RenderWindow* window) {
-    text.setPosition(window->getSize().x/2 - text.getGlobalBounds().width/2,
-                     window->getSize().y/2 - text.getGlobalBounds().height/2);
+void MenuGameState::draw(sf::Time delta) {
+    this->game->window.setView(this->view);
+    this->game->window.clear(sf::Color::Black);
+    this->game->window.draw(this->game->background);
 
     for (auto &item : menuItems) {
-        window->draw(item.button);
-        window->draw(item.buttonText);
+        this->game->window.draw(item.button);
+        this->game->window.draw(item.buttonText);
     }
 
-    window->draw(text);
+    this->game->window.draw(text);
 }
 
 MenuGameState::MenuResult MenuGameState::HandleClick(int x, int y) {
