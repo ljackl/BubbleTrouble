@@ -7,3 +7,4 @@ out.log
 
 # clion binary output
 cmake-build-debug/
+.idea
