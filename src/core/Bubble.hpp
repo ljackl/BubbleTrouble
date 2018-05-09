@@ -5,10 +5,6 @@
 #ifndef BUBBLETROUBLE_BLOB_H
 #define BUBBLETROUBLE_BLOB_H
 
-#ifdef _WIN32
-#include "stdafx.h"
-#endif
-
 #include <cmath>
 #include <SFML/Graphics.hpp>
 #include "GameEntity.hpp"

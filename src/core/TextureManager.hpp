@@ -5,10 +5,6 @@
 #ifndef BUBBLETROUBLE_TEXTUREMANAGER_H
 #define BUBBLETROUBLE_TEXTUREMANAGER_H
 
-#ifdef _WIN32
-#include "stdafx.h"
-#endif
-
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <map>

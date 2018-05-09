@@ -5,10 +5,6 @@
 // https://github.com/catchorg/Catch2/blob/master/docs/tutorial.md
 //
 
-#ifdef _WIN32
-#include "stdafx.h"
-#endif
-
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "../other/TestClass.hpp"

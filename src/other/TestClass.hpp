@@ -9,10 +9,6 @@
 #ifndef BUBBLETROUBLE_TESTCLASS_H
 #define BUBBLETROUBLE_TESTCLASS_H
 
-#ifdef _WIN32
-#include "stdafx.h"
-#endif
-
 class TestClass {
 public:
     int add(int a, int b);

@@ -5,10 +5,6 @@
 #ifndef BUBBLETROUBLE_GAME_H
 #define BUBBLETROUBLE_GAME_H
 
-#ifdef _WIN32
-#include "stdafx.h"
-#endif
-
 #include <stack>
 #include <SFML/Graphics.hpp>
 #include "TextureManager.hpp"
