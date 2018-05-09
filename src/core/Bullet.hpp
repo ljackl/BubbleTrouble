@@ -9,13 +9,15 @@
 #include <SFML/Graphics.hpp>
 #include "GameEntity.hpp"
 
-class Bullet : GameEntity {
+class Bullet : public GameEntity {
 public:
     Bullet(sf::FloatRect startPosition);
 
     void handleEvents() override {}
     void update(sf::RenderWindow& window, sf::Time delta) override;
     void draw(sf::RenderWindow& window, sf::Time delta) override;
+
+    bool isOutOfYFrame() { return position.y < 0; }
 
 };
 

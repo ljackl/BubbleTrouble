@@ -2,6 +2,7 @@
 // Created by pat on 26/04/18.
 //
 
+#include <iostream>
 #include "PlayGameState.hpp"
 
 PlayGameState::PlayGameState(Game* game) {
@@ -24,8 +25,15 @@ PlayGameState::PlayGameState(Game* game) {
     this->game->textureManager.getRef("ground").setRepeated(true);
     groundSprite.setTexture(this->game->textureManager.getRef("ground"));
 
+    // Player Creation
     Animation staticAnim(0, 0, 1.0f);
-    player = Player(50, 50, this->game->textureManager.getRef("player"), { staticAnim });
+    player = Player(50, game->window.getSize().y - 20, this->game->textureManager.getRef("player"), { staticAnim });
+
+    // Bubble Creation
+    for( int i = 0; i < 2; i++ ) {
+        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
+    }
+
 }
 
 PlayGameState::~PlayGameState() {
@@ -69,14 +77,20 @@ void PlayGameState::handleEvents() {
                 if (event.key.code == sf::Keyboard::Escape) {
                     // TODO: Adds states infinitum on top of each other
                     this->game->pushState(new MenuGameState(this->game));
-                } else if (event.key.code == sf::Keyboard::Space) {
-                    fireBullet();
                 }
                 break;
             }
             default: break;
         }
     }
+
+    isFired = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+    if (!isFired && wasFired) {
+        fireBullet();
+    }
+
+    wasFired = isFired;
+
     player.handleEvents();
 }
 
@@ -85,10 +99,39 @@ void PlayGameState::update(sf::Time delta) {
 
     for (auto &item : bullets) {
         item->update(this->game->window, delta);
+
+        // Remove the bullet if out of frame
+        if (item->isOutOfYFrame())
+            bullets.erase(std::remove(bullets.begin(), bullets.end(), item), bullets.end());
     }
 
     for (auto &item : bubbles) {
         item->update(this->game->window, delta);
+
+        // If popped remove
+        if (item->isPopped())
+            bubbles.erase(std::remove(bubbles.begin(), bubbles.end(), item), bubbles.end());
+
+        // Check if player hit
+        if (isIntersecting(item->getShape(), player.getShape()))
+            this->game->pushState(new MenuGameState(this->game));
+    }
+
+    for (auto &bullet : bullets) {
+        for (auto &bubble : bubbles) {
+            if (isIntersecting(bullet->getShape(), bubble->getShape())) {
+                // Remove the bullet
+                bullets.erase(std::remove(bullets.begin(), bullets.end(), bullet), bullets.end());
+
+                // Pop bubble
+                bubble->popBubble();
+
+                // Update score
+                score++;
+                text.setString("Score: " + std::to_string(score));
+
+            }
+        }
     }
 }
 
@@ -121,4 +164,8 @@ void PlayGameState::draw(sf::Time delta) {
 
 void PlayGameState::fireBullet() {
     bullets.push_back(new Bullet(player.getPosition()));
+}
+
+bool PlayGameState::isIntersecting(sf::RectangleShape shape1, sf::RectangleShape shape2) {
+    return shape1.getGlobalBounds().intersects(shape2.getGlobalBounds());
 }

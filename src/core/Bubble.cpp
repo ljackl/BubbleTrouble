@@ -33,7 +33,7 @@ Bubble::Bubble(float startX, float startY, State pState)
             break;
     }
 
-    shape.setSize(sf::Vector2f(10, 10));
+    shape.setSize(sf::Vector2f(20, 20));
     shape.setPosition(position);
 }
 
@@ -106,4 +106,27 @@ void Bubble::update(sf::RenderWindow& window, sf::Time delta)
 void Bubble::draw(sf::RenderWindow& window, sf::Time delta) {
     // Draw this
     window.draw(getShape());
+}
+
+void Bubble::popBubble() {
+    switch (popState)
+    {
+        case POP_ONE:
+            popState = POP_TWO;
+            shape.setSize(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
+            break;
+
+        case POP_TWO:
+            popState = POP_THREE;
+            shape.setSize(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
+            break;
+
+        case POP_THREE:
+            shape.setSize(sf::Vector2f(0, 0));
+            shape.setPosition(-1000, -1000);
+            popState = POPPED;
+            break;
+
+        case POPPED:break;
+    }
 }

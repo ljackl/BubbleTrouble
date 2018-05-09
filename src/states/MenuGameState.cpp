@@ -70,7 +70,7 @@ void MenuGameState::handleEvents() {
             case sf::Event::MouseButtonReleased:
             {
                 if (HandleClick(event.mouseButton.x,event.mouseButton.y) == Play) {
-                    game->pushState(new PlayGameState(this->game));
+                    game->changeState(new PlayGameState(this->game));
                 }
                 break;
             }

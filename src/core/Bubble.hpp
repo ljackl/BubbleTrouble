@@ -16,21 +16,31 @@ enum State
     STATE_PLAY
 };
 
-class Bubble : GameEntity {
+enum PopState
+{
+    POP_ONE,
+    POP_TWO,
+    POP_THREE,
+    POPPED
+};
 
-
+class Bubble : public GameEntity {
 public:
     Bubble(float startX, float startY, State pState);
-
-    void reboundSides();
-    void reboundBottomOrTop();
 
     void handleEvents() override {}
     void update(sf::RenderWindow& window, sf::Time delta) override;
     void draw(sf::RenderWindow& window, sf::Time delta) override;
 
+    void popBubble();
+    bool isPopped() { return popState == POPPED; }
+
 private:
+    void reboundSides();
+    void reboundBottomOrTop();
+
     State state;
+    PopState popState = POP_ONE;
 };
 
 #endif //BUBBLETROUBLE_BLOB_H
