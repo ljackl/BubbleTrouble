@@ -36,6 +36,10 @@ private:
     sf::Font font;
     sf::Text text;
 
+    int score = 0;
+
+    bool wasFired = false;
+    bool isFired = false;
     void fireBullet();
 
     bool isIntersecting(sf::RectangleShape shape1, sf::RectangleShape shape2);

@@ -31,11 +31,11 @@ void Player::handleEvents() {
     moving = false;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         // move left...
-        acceleration.x = -3.0f;
+        acceleration.x = -6.0f;
         moving = true;
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         // move right...
-        acceleration.x = 3.0f;
+        acceleration.x = 6.0f;
         moving = true;
     }
 }
@@ -54,13 +54,13 @@ void Player::update(sf::RenderWindow& window, sf::Time delta)
     if (!moving) {
         // stop moving
         acceleration.x = 0.0f;
-        velocity.x /= 1.05f;
+        velocity.x /= 1.1f;
     }
 
     velocity += acceleration * delta.asSeconds();
 
     // Limit vel
-    velocity.x = static_cast<float>(fmin(3.8f, fmax(velocity.x, -3.8f)));
+    velocity.x = static_cast<float>(fmin(5.8f, fmax(velocity.x, -5.8f)));
     velocity.y = static_cast<float>(fmin(9.8f, fmax(velocity.y, -9.8f)));
 
     // Update the ball position variables

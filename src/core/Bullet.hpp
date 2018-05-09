@@ -21,6 +21,8 @@ public:
     void update(sf::RenderWindow& window, sf::Time delta) override;
     void draw(sf::RenderWindow& window, sf::Time delta) override;
 
+    bool isOutOfYFrame() { return position.y < 0; }
+
 };
 
 #endif //BUBBLETROUBLE_BULLET_H

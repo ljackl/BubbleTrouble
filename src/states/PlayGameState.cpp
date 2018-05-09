@@ -17,8 +17,7 @@ PlayGameState::PlayGameState(Game* game) {
 
     text = sf::Text("Bubble Trouble Remastered\nPlaying",font,11);
     text.setCharacterSize(32);
-    text.setPosition(game->window.getSize().x/2 - text.getGlobalBounds().width/2,
-                     game->window.getSize().y/2 - text.getGlobalBounds().height/2);
+    text.setPosition(10, 10);
 
     // Ground loading
     this->game->textureManager.getRef("ground").setRepeated(true);
@@ -26,10 +25,10 @@ PlayGameState::PlayGameState(Game* game) {
 
     // Player Creation
     Animation staticAnim(0, 0, 1.0f);
-    player = Player(50, game->window.getSize().y - 10, this->game->textureManager.getRef("player"), { staticAnim });
+    player = Player(50, game->window.getSize().y - 20, this->game->textureManager.getRef("player"), { staticAnim });
 
     // Bubble Creation
-    for( int i = 0; i < 10; i++ ) {
+    for( int i = 0; i < 2; i++ ) {
         bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
     }
 
@@ -76,8 +75,6 @@ void PlayGameState::handleEvents() {
                 if (event.key.code == sf::Keyboard::Escape) {
                     // TODO: Adds states infinitum on top of each other
                     this->game->pushState(new MenuGameState(this->game));
-                } else if (event.key.code == sf::Keyboard::Space) {
-                    fireBullet();
                 }
                 break;
             }
@@ -85,11 +82,12 @@ void PlayGameState::handleEvents() {
         }
     }
 
-    // Using state checking instead of event
-    // this is because it can only handle one event (only one key)
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+    isFired = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+    if (!isFired && wasFired) {
         fireBullet();
     }
+
+    wasFired = isFired;
 
     player.handleEvents();
 }
@@ -99,16 +97,37 @@ void PlayGameState::update(sf::Time delta) {
 
     for (auto &item : bullets) {
         item->update(this->game->window, delta);
+
+        // Remove the bullet if out of frame
+        if (item->isOutOfYFrame())
+            bullets.erase(std::remove(bullets.begin(), bullets.end(), item), bullets.end());
     }
 
     for (auto &item : bubbles) {
         item->update(this->game->window, delta);
+
+        // If popped remove
+        if (item->isPopped())
+            bubbles.erase(std::remove(bubbles.begin(), bubbles.end(), item), bubbles.end());
+
+        // Check if player hit
+        if (isIntersecting(item->getShape(), player.getShape()))
+            this->game->pushState(new MenuGameState(this->game));
     }
 
     for (auto &bullet : bullets) {
         for (auto &bubble : bubbles) {
             if (isIntersecting(bullet->getShape(), bubble->getShape())) {
+                // Remove the bullet
                 bullets.erase(std::remove(bullets.begin(), bullets.end(), bullet), bullets.end());
+
+                // Pop bubble
+                bubble->popBubble();
+
+                // Update score
+                score++;
+                text.setString("Score: " + std::to_string(score));
+
             }
         }
     }

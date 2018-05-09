@@ -13,7 +13,7 @@ SplashGameState::SplashGameState(Game* game) {
     this->view.setCenter(pos);
 
     for( int i = 0; i < 10; i++ ) {
-        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_SPLASHSCREEN));
+        bubbles.push_back(Bubble(rand() % 100, rand() % 100, STATE_SPLASHSCREEN));
     }
 
     font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
@@ -25,9 +25,6 @@ SplashGameState::SplashGameState(Game* game) {
 }
 
 SplashGameState::~SplashGameState() {
-    for (auto &item : bubbles) {
-        delete item;
-    }
     bubbles.clear();
 }
 
@@ -72,7 +69,7 @@ void SplashGameState::handleEvents() {
 
 void SplashGameState::update(sf::Time delta) {
     for (auto &item : bubbles) {
-        item->update(game->window, delta);
+        item.update(game->window, delta);
     }
 }
 
@@ -82,7 +79,7 @@ void SplashGameState::draw(sf::Time delta) {
     this->game->window.draw(this->game->background);
 
     for (auto &item : bubbles) {
-        item->draw(this->game->window, delta);
+        item.draw(this->game->window, delta);
     }
 
     this->game->window.draw(text);
