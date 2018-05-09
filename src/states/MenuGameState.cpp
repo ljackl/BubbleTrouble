@@ -12,23 +12,20 @@ MenuGameState::MenuGameState(Game* game) {
     pos *= 0.5f;
     this->view.setCenter(pos);
 
-    font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
-
-    text = sf::Text("Bubble Trouble Remastered\nMain Menu",font,11);
-    text.setCharacterSize(32);
-    text.setPosition(game->window.getSize().x/2 - text.getGlobalBounds().width/2,
-                     game->window.getSize().y/2 - text.getGlobalBounds().height/2);
+    text = sf::Text("Bubble Trouble Remastered\nMain Menu", this->game->primaryFont, 11);
+    text.setCharacterSize(22);
+    text.setPosition(10, 10);
 
     // Play button
     MenuItem playButton;
     playButton.action = Play;
 
     playButton.rect.left = 30;
-    playButton.rect.top = 40;
+    playButton.rect.top = game->window.getSize().y - 25 - 30;
     playButton.rect.width = 100;
     playButton.rect.height = 25;
 
-    playButton.buttonText = sf::Text("Play", font, 16);
+    playButton.buttonText = sf::Text("Play", this->game->secondaryFont, 12);
     playButton.buttonText.setPosition(sf::Vector2f(playButton.rect.left + 10, playButton.rect.top + 1));
     playButton.buttonText.setFillColor(sf::Color(0, 0, 0));
 

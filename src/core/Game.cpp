@@ -16,6 +16,9 @@ Game::Game(int screenWidth, int screenHeight) {
     this->window.setFramerateLimit(60);
 
     this->background.setTexture(this->textureManager.getRef("background"));
+    primaryFont.loadFromFile("resources/fonts/kenvector_future.ttf");
+    secondaryFont.loadFromFile("resources/fonts/kenvector_future_thin.ttf");
+
 }
 
 Game::~Game() {

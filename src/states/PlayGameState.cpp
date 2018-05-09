@@ -16,12 +16,9 @@ PlayGameState::PlayGameState(Game* game) {
         bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
     }
 
-    font.loadFromFile("resources/fonts/PxPlus_IBM_EGA8.ttf");
-
-    text = sf::Text("Bubble Trouble Remastered\nPlaying",font,11);
-    text.setCharacterSize(32);
-    text.setPosition(game->window.getSize().x/2 - text.getGlobalBounds().width/2,
-                     game->window.getSize().y/2 - text.getGlobalBounds().height/2);
+    text = sf::Text("Bubble Trouble Remastered\nPlaying", this->game->primaryFont, 11);
+    text.setCharacterSize(22);
+    text.setPosition(10, 10);
 
     // Ground loading
     this->game->textureManager.getRef("ground").setRepeated(true);
