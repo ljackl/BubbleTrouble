@@ -24,7 +24,7 @@ add_executable(BubbleTrouble src/main.cpp)
 target_link_libraries(BubbleTrouble BTL)
 
 # Create BubbleTrouble Test
-add_executable(BubbleTrouble_TEST src/unit_tests/Test.cpp)
+add_executable(BubbleTrouble_TEST src/unit_tests/Test.cpp src/unit_tests/GameTest.cpp src/unit_tests/BulletTest.cpp src/unit_tests/BubbleTest.cpp)
 target_link_libraries(BubbleTrouble_TEST BTL)
 
 # SFML Loading
@@ -33,6 +33,7 @@ find_package(SFML REQUIRED system window graphics network audio)
 if (SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
     target_link_libraries(BubbleTrouble ${SFML_LIBRARIES})
+    target_link_libraries(BubbleTrouble_TEST ${SFML_LIBRARIES})
 endif()
 
 file(COPY resources DESTINATION ${CMAKE_BINARY_DIR})
