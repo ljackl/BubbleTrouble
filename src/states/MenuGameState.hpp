@@ -30,7 +30,6 @@ public:
     void draw(sf::Time delta) override;
 
 private:
-    sf::Font font;
     sf::Text text;
 
     std::list<MenuItem> menuItems;

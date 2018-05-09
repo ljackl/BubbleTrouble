@@ -22,7 +22,6 @@ private:
     std::vector<Bubble*> bubbles;
 
     sf::View view;
-    sf::Font font;
     sf::Text text;
 };
 

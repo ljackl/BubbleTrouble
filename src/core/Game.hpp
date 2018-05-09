@@ -22,6 +22,8 @@ public:
     sf::RenderWindow window;
     TextureManager textureManager;
     sf::Sprite background;
+    sf::Font primaryFont;
+    sf::Font secondaryFont;
 
     Game(int screenWidth, int screenHeight);
     ~Game();

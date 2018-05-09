@@ -29,7 +29,6 @@ private:
     sf::Sprite groundSprite;
 
     sf::View view;
-    sf::Font font;
     sf::Text text;
 
     void fireBullet();
