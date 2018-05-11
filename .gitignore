@@ -4,6 +4,7 @@ tmp
 out.log
 .DS_Store
 *.userprefs
+x64
 
 # clion binary output
 cmake-build-debug/

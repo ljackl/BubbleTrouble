@@ -29,7 +29,7 @@ public:
     ~Game();
 
     bool running() { return isRunning; }
-    bool end() { isRunning = false; }
+    void end() { isRunning = false; }
 
     GameState* peekState();
     void changeState(GameState *state);

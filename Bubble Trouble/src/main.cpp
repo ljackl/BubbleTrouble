@@ -1,8 +1,4 @@
 
-#ifdef _WIN32
-#include "stdafx.h"
-#endif
-
 #include "core/Game.hpp"
 #include "states/SplashGameState.hpp"
 
