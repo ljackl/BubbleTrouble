@@ -1,0 +1,26 @@
+Daily Standup for [Group 1 / BubbleTrouble / Wk10]
+Date: 11/05/2018
+
+Talking Points
+============================
+Things I've done
+* Bubble Hit / Scoring Mechanics
+* Font refactoring
+* Graphical intergration with master branch
+* Player mechanics
+* Unit testing of core classes
+* Scoring
+
+Things that were blocking me
+* N/A
+
+Still working on
+* N/A
+
+Plan on doing
+* Bubble popping into two small bubbles instead of one
+* Sound merging
+* Texture's / Sprite's for player and bubbles (potentially animated)
+
+General status
+* On schedule

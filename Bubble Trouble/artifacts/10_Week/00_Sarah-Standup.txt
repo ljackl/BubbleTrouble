@@ -1,0 +1,37 @@
+Sarah
+
+Daily Standup for [Group 1 / Distinction Project / Wk10]
+
+Date: 11/05/2018
+
+Talking Points
+
+============================
+
+Things I've done
+
+* Design and posted the project test plan on the wiki
+
+* Designed the unit test suite; Pat had already done his unit tests so I added his and made some for Jack to implement
+
+* Organised the trello abit more
+
+* Created a google slide for presentation and posted all info on trello 
+
+
+Things that were blocking me
+
+* As we decided to follow a waterfall process, testing is not meant to be started til implementation is DONE but due to tasks in the tutorial needing to be done we've had to kind of make our project a hybrid
+
+Still working on
+
+* Presentation
+* Unit testing report
+
+Things I plan on doing
+
+* Start presentation slides
+
+General status
+
+* confident in the project
