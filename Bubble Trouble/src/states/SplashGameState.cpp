@@ -13,7 +13,7 @@ SplashGameState::SplashGameState(Game* game) {
     this->view.setCenter(pos);
 
     for( int i = 0; i < 10; i++ ) {
-        bubbles.push_back(Bubble(rand() % 100, rand() % 100, STATE_SPLASHSCREEN));
+        bubbles.push_back(Bubble(rand() % 100, rand() % 100, STATE_SPLASHSCREEN, this->game->textureManager.getRef("bubble")));
     }
 
     text = sf::Text("Bubble Trouble Remastered", this->game->primaryFont, 11);
