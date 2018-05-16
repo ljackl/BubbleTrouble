@@ -27,6 +27,7 @@ enum PopState
 class Bubble : public GameEntity {
 public:
     Bubble(float startX, float startY, State pState);
+    Bubble(const Bubble& p);
 
     void handleEvents() override {}
     void update(sf::RenderWindow& window, sf::Time delta) override;
@@ -35,8 +36,9 @@ public:
     void popBubble();
     bool isPopped() { return popState == POPPED; }
 
-private:
     void reboundSides();
+
+private:
     void reboundBottomOrTop();
 
     State state;

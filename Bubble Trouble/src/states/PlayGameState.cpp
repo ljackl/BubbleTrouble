@@ -13,10 +13,6 @@ PlayGameState::PlayGameState(Game* game) {
     pos *= 0.5f;
     this->view.setCenter(pos);
 
-    for( int i = 0; i < 10; i++ ) {
-        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
-    }
-
     text = sf::Text("Bubble Trouble Remastered\nPlaying", this->game->primaryFont, 11);
     text.setCharacterSize(22);
     text.setPosition(10, 10);
@@ -94,6 +90,9 @@ void PlayGameState::handleEvents() {
     player.handleEvents();
 }
 
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_real_distribution<> dis(0, 100);
 void PlayGameState::update(sf::Time delta) {
     player.update(this->game->window, delta);
 
@@ -123,15 +122,28 @@ void PlayGameState::update(sf::Time delta) {
                 // Remove the bullet
                 bullets.erase(std::remove(bullets.begin(), bullets.end(), bullet), bullets.end());
 
-                // Pop bubble
+                // Clone bubble
+                Bubble* newBubble = new Bubble(*bubble);
+                bubbles.push_back(newBubble);
+
+                // Pop bubbles
                 bubble->popBubble();
+                newBubble->popBubble();
+
+                // Rebound one
+                newBubble->reboundSides();
 
                 // Update score
                 score++;
                 text.setString("Score: " + std::to_string(score));
-
             }
         }
+    }
+
+    // Randomly create new bubbles
+    int number = dis(gen);
+    if (number == 1) {
+        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
     }
 }
 

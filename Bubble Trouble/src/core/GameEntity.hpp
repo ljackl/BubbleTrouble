@@ -22,7 +22,7 @@ protected:
     sf::Sprite sprite;
 
 public:
-    sf::FloatRect getPosition();
+    sf::FloatRect getPosition() const;
     sf::RectangleShape getShape();
 
     virtual void handleEvents() = 0;

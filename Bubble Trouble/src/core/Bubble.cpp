@@ -37,6 +37,15 @@ Bubble::Bubble(float startX, float startY, State pState)
     shape.setPosition(position);
 }
 
+Bubble::Bubble(const Bubble &p) {
+    this->position = p.position;
+    this->velocity = p.velocity;
+    this->acceleration = p.acceleration;
+    this->popState = p.popState;
+    this->state = p.state;
+    this->shape = p.shape;
+}
+
 void Bubble::reboundSides()
 {
     //position.x -= (velocity.x * 30);

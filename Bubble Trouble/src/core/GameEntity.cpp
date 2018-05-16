@@ -4,7 +4,7 @@
 
 #include "GameEntity.hpp"
 
-sf::FloatRect GameEntity::getPosition() {
+sf::FloatRect GameEntity::getPosition()const {
     return shape.getGlobalBounds();
 }
 

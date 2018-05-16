@@ -12,6 +12,9 @@
 #include "../core/Bubble.hpp"
 #include "../core/Bullet.hpp"
 
+#include <random>
+#include <iostream>
+
 class PlayGameState : public GameState {
 public:
     explicit PlayGameState(Game* game);
