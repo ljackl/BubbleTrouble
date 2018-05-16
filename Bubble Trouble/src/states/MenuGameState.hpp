@@ -7,12 +7,13 @@
 
 #include "GameState.hpp"
 #include "PlayGameState.hpp"
+#include "CreditGameState.hpp"
 
 #include <list>
 
 class MenuGameState : public GameState {
 public:
-    enum MenuResult { Nothing, Exit, Play };
+    enum MenuResult { Nothing, Exit, Play, Credit };
 
     struct MenuItem {
     public:

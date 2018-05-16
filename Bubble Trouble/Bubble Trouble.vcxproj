@@ -20,6 +20,7 @@
     <ClCompile Include="src\core\TextureManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\other\TestClass.cpp" />
+    <ClCompile Include="src\states\CreditGameState.cpp" />
     <ClCompile Include="src\states\MenuGameState.cpp" />
     <ClCompile Include="src\states\PlayGameState.cpp" />
     <ClCompile Include="src\states\SplashGameState.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="src\core\Player.hpp" />
     <ClInclude Include="src\core\TextureManager.hpp" />
     <ClInclude Include="src\other\TestClass.hpp" />
+    <ClInclude Include="src\states\CreditGameState.hpp" />
     <ClInclude Include="src\states\GameState.hpp" />
     <ClInclude Include="src\states\MenuGameState.hpp" />
     <ClInclude Include="src\states\PlayGameState.hpp" />
