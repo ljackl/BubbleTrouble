@@ -80,8 +80,7 @@ void CreditGameState::handleEvents() {
             case sf::Event::KeyPressed:
             {
                 if (event.key.code == sf::Keyboard::Escape) {
-                    this->game->window.close();
-                    this->game->end();
+                    this->game->changeState(new MenuGameState(this->game));
                 } else if (event.key.code == sf::Keyboard::Space) {
                     this->game->changeState(new MenuGameState(this->game));
                 }
