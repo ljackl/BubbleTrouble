@@ -40,7 +40,7 @@ private:
     bool isFired = false;
     void fireBullet();
 
-    bool isIntersecting(sf::RectangleShape shape1, sf::RectangleShape shape2);
+    bool isIntersecting(sf::FloatRect shape1, sf::FloatRect shape2);
 };
 
 

@@ -14,9 +14,6 @@ Bullet::Bullet(sf::FloatRect startPosition, sf::Texture& texture) {
     acceleration.x = 0.0f;
     acceleration.y = 0.0f;
 
-    shape.setSize(sf::Vector2f(2, 2));
-    shape.setPosition(position);
-
     this->sprite.setTexture(texture);
 
     sf::Vector2f targetSize(15.0f, 10.0f);
@@ -31,7 +28,7 @@ Bullet::Bullet(sf::FloatRect startPosition, sf::Texture& texture) {
 
 void Bullet::update(sf::RenderWindow& window, sf::Time delta)
 {
-    if (getPosition().top < 0)
+    if (getRect().top < 0)
     {
         // non exists
     }
@@ -46,7 +43,6 @@ void Bullet::update(sf::RenderWindow& window, sf::Time delta)
     position += velocity;
 
     // Move the ball and the bat
-    shape.setPosition(position);
     this->sprite.setPosition(position);
 }
 

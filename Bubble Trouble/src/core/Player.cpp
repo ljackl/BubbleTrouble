@@ -14,9 +14,6 @@ Player::Player(float startX, float startY, sf::Texture& texture, const std::vect
     acceleration.x = 0.0f;
     acceleration.y = 0.0f;
 
-    shape.setSize(sf::Vector2f(30, 40));
-    shape.setPosition(position);
-
     sf::Vector2f targetSize(30.0f, 40.0f);
     this->sprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
     this->sprite.setTexture(texture);
@@ -49,12 +46,12 @@ void Player::handleEvents() {
 
 void Player::update(sf::RenderWindow& window, sf::Time delta)
 {
-    if (getPosition().left < 0)
+    if (getRect().left < 0)
     {
         position.x = window.getSize().x - 10;
     }
 
-    if (getPosition().left + 10 > window.getSize().x) {
+    if (getRect().left + 10 > window.getSize().x) {
         position.x = 0;
     }
 
@@ -74,7 +71,6 @@ void Player::update(sf::RenderWindow& window, sf::Time delta)
     position += velocity;
 
     // Move the player
-    shape.setPosition(position);
     this->sprite.setPosition(position);
 }
 

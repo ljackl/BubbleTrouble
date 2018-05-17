@@ -26,10 +26,12 @@ PlayGameState::PlayGameState(Game* game) {
     player = Player(50, game->window.getSize().y - 40, this->game->textureManager.getRef("player"), { staticAnim });
 
     // Bubble Creation
+    sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f);
+    sf::Vector2f acl = sf::Vector2f(3.2f, 9.8f);
     for( int i = 0; i < 2; i++ ) {
-        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY, this->game->textureManager.getRef("bubble")));
+        pos = sf::Vector2f(rand() % game->window.getSize().x - 10, rand() % 100);
+        bubbles.push_back(new Bubble(pos, vel, acl, STATE_PLAY, POP_ONE, this->game->textureManager.getRef("bubble")));
     }
-
 }
 
 PlayGameState::~PlayGameState() {
@@ -71,8 +73,7 @@ void PlayGameState::handleEvents() {
             case sf::Event::KeyPressed:
             {
                 if (event.key.code == sf::Keyboard::Escape) {
-                    // TODO: Adds states infinitum on top of each other
-                    this->game->pushState(new MenuGameState(this->game));
+                    this->game->changeState(new MenuGameState(this->game));
                 }
                 break;
             }
@@ -92,58 +93,58 @@ void PlayGameState::handleEvents() {
 
 std::random_device rd;
 std::mt19937 gen(rd());
-std::uniform_real_distribution<> dis(0, 300);
+std::uniform_real_distribution<> dis(0, 400);
 void PlayGameState::update(sf::Time delta) {
     player.update(this->game->window, delta);
 
-    for (auto &item : bullets) {
-        item->update(this->game->window, delta);
-
-        // Remove the bullet if out of frame
-        if (item->isOutOfYFrame())
-            bullets.erase(std::remove(bullets.begin(), bullets.end(), item), bullets.end());
+    for (auto &bullet : bullets) {
+        // Update bullet
+        bullet->update(this->game->window, delta);
+        // Remove if out of frame
+        if (bullet->isOutOfYFrame())
+            bullets.erase(std::remove(bullets.begin(), bullets.end(), bullet), bullets.end());
     }
 
-    for (auto &item : bubbles) {
-        item->update(this->game->window, delta);
-
-        // If popped remove
-        if (item->isPopped())
-            bubbles.erase(std::remove(bubbles.begin(), bubbles.end(), item), bubbles.end());
-
+    for (auto &bubble : bubbles) {
+        // Update bubble
+        bubble->update(this->game->window, delta);
         // Check if player hit
-        if (isIntersecting(item->getShape(), player.getShape()))
-            this->game->pushState(new MenuGameState(this->game));
+        if (isIntersecting(bubble->getRect(), player.getRect()))
+            this->game->changeState(new MenuGameState(this->game));
+        // If popped remove
+        if (bubble->isPopped())
+            bubbles.erase(std::remove(bubbles.begin(), bubbles.end(), bubble), bubbles.end());
     }
 
+    // Check for bubble bullet collisions
     for (auto &bullet : bullets) {
         for (auto &bubble : bubbles) {
-            if (isIntersecting(bullet->getShape(), bubble->getShape())) {
+            if (isIntersecting(bullet->getRect(), bubble->getRect())) {
                 // Remove the bullet
                 bullets.erase(std::remove(bullets.begin(), bullets.end(), bullet), bullets.end());
 
-                // Clone bubble
-                Bubble* newBubble = new Bubble(*bubble);
-                bubbles.push_back(newBubble);
-
-                // Pop bubbles
+                // Create double bubble & Pop bubble
                 bubble->popBubble();
-                newBubble->popBubble();
-
-                // Rebound one
-                newBubble->reboundSides();
+                this->bubbles.push_back(new Bubble(*bubble));
+                bubble->reboundSides();
 
                 // Update score
                 score++;
                 text.setString("Score: " + std::to_string(score));
+
+                // Kill loop
+                break;
             }
         }
     }
 
     // Randomly create new bubbles
-    int number = dis(gen);
+    auto number = static_cast<int>(dis(gen));
     if (number == 1) {
-        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY, this->game->textureManager.getRef("bubble")));
+        sf::Vector2f pos = sf::Vector2f(rand() % this->game->window.getSize().x - 10, rand() % 100);
+        sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f);
+        sf::Vector2f acl = sf::Vector2f(3.2f, 9.8f);
+        this->bubbles.push_back(new Bubble(pos, vel, acl, STATE_PLAY, POP_ONE, this->game->textureManager.getRef("bubble")));
     }
 }
 
@@ -175,9 +176,9 @@ void PlayGameState::draw(sf::Time delta) {
 }
 
 void PlayGameState::fireBullet() {
-    bullets.push_back(new Bullet(player.getPosition(), this->game->textureManager.getRef("bullet")));
+    bullets.push_back(new Bullet(player.getRect(), this->game->textureManager.getRef("bullet")));
 }
 
-bool PlayGameState::isIntersecting(sf::RectangleShape shape1, sf::RectangleShape shape2) {
-    return shape1.getGlobalBounds().intersects(shape2.getGlobalBounds());
+bool PlayGameState::isIntersecting(sf::FloatRect shape1, sf::FloatRect shape2) {
+    return shape1.intersects(shape2);
 }

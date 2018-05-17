@@ -4,10 +4,3 @@
 
 #include "GameEntity.hpp"
 
-sf::FloatRect GameEntity::getPosition()const {
-    return shape.getGlobalBounds();
-}
-
-sf::RectangleShape GameEntity::getShape() {
-    return shape;
-}

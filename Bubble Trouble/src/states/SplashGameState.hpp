@@ -19,7 +19,7 @@ public:
     void draw(sf::Time delta) override;
 
 private:
-    std::vector<Bubble> bubbles;
+    std::vector<Bubble*> bubbles;
 
     sf::View view;
     sf::Text text;

@@ -16,18 +16,29 @@ protected:
     sf::Vector2f velocity;
     sf::Vector2f acceleration;
 
-    sf::RectangleShape shape;
-
     AnimationHandler animationHandler;
     sf::Sprite sprite;
 
 public:
-    sf::FloatRect getPosition() const;
-    sf::RectangleShape getShape();
-
     virtual void handleEvents() = 0;
     virtual void update(sf::RenderWindow& window, sf::Time delta) = 0;
     virtual void draw(sf::RenderWindow& window, sf::Time delta) = 0;
+
+    const sf::Vector2f &getPosition() const {
+        return position;
+    }
+
+    const sf::Vector2f &getVelocity() const {
+        return velocity;
+    }
+
+    const sf::Vector2f &getAcceleration() const {
+        return acceleration;
+    }
+
+    const sf::FloatRect getRect() const {
+        return sprite.getGlobalBounds();
+    }
 };
 
 

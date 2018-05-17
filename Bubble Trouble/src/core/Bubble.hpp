@@ -26,8 +26,8 @@ enum PopState
 
 class Bubble : public GameEntity {
 public:
-    Bubble(float startX, float startY, State pState, sf::Texture& texture);
-    Bubble(const Bubble& p);
+    Bubble(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f acceleration, State State, PopState popState, sf::Texture& texture);
+    Bubble(const Bubble &bubble);
 
     void handleEvents() override {}
     void update(sf::RenderWindow& window, sf::Time delta) override;
@@ -42,7 +42,7 @@ private:
     void reboundBottomOrTop();
 
     State state;
-    PopState popState = POP_ONE;
+    PopState popState;
 };
 
 #endif //BUBBLETROUBLE_BLOB_H
