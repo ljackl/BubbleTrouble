@@ -22,6 +22,8 @@ Player::Player(float startX, float startY, sf::Texture& texture, const std::vect
             targetSize.x / this->sprite.getLocalBounds().width,
             targetSize.y / this->sprite.getLocalBounds().height);
 
+    position.y -= this->sprite.getGlobalBounds().height;
+
     this->sprite.setPosition(position);
     /*this->animationHandler.frameSize = sf::IntRect(0, 0, 100, 100);
     for(auto animation : animations)

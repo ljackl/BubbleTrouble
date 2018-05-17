@@ -5,8 +5,7 @@
 #include "Bubble.hpp"
 
 // This the constructor and it is called when we create an object
-Bubble::Bubble(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f acceleration, State state, PopState popState, sf::Texture& texture)
-{
+Bubble::Bubble(sf::Vector2f position, sf::Vector2f velocity, sf::Vector2f acceleration, State state, PopState popState, sf::Texture& texture) {
     this->position = position;
     this->velocity = velocity;
     this->acceleration = acceleration;
@@ -34,55 +33,41 @@ Bubble::Bubble(const Bubble &bubble) {
     this->sprite = bubble.sprite;
 }
 
-void Bubble::reboundSides()
-{
+void Bubble::reboundSides() {
     //position.x -= (velocity.x * 30);
     velocity.x *= -1;
     acceleration.x *= -1;
 }
 
-void Bubble::reboundBottomOrTop()
-{
+void Bubble::reboundBottomOrTop() {
     //position.y -= (velocity.y * 30);
     velocity.y *= -1;
-
 }
 
-void Bubble::update(sf::RenderWindow& window, sf::Time delta)
-{
-    switch (state)
-    {
-        case STATE_SPLASHSCREEN:
-            if (getRect().top < 0 || getRect().top + 10 > window.getSize().y)
-            {
-                reboundBottomOrTop();
-            }
+void Bubble::bounce() {
+    velocity.y = -9.8f;
+    acceleration.y = -20.2f;
+}
 
-            if (getRect().left < 0 || getRect().left + 10 > window.getSize().x)
-            {
+void Bubble::update(sf::RenderWindow& window, sf::Time delta) {
+    switch (state) {
+        case STATE_SPLASHSCREEN:
+            if (this->sprite.getGlobalBounds().left < 0 || this->sprite.getGlobalBounds().left + this->sprite.getGlobalBounds().width > window.getSize().x) {
                 reboundSides();
             }
-
+            if (this->sprite.getGlobalBounds().top < 0 || this->sprite.getGlobalBounds().top + this->sprite.getGlobalBounds().height > window.getSize().y) {
+                reboundBottomOrTop();
+            }
             break;
 
         case STATE_PLAY:
             // https://gamedev.stackexchange.com/questions/121389/how-i-can-make-better-jump-to-my-game-c-sfml
-            if (getRect().left < 0 || getRect().left + 10 > window.getSize().x)
-            {
+            if (this->sprite.getGlobalBounds().left < 0 || this->sprite.getGlobalBounds().left + this->sprite.getGlobalBounds().width > window.getSize().x) {
                 reboundSides();
             }
-
-            if (getRect().top + 10 > window.getSize().y)
-            {
-                velocity.y = -9.8f;
-                acceleration.y = -20.2f;
-            }
-
-            if (getRect().top > window.getSize().y / 2)
-            {
+            if (this->sprite.getGlobalBounds().top > window.getSize().y / 2) {
                 acceleration.y = 9.8f;
             }
-
             break;
     }
 
@@ -105,8 +90,7 @@ void Bubble::draw(sf::RenderWindow& window, sf::Time delta) {
 }
 
 void Bubble::popBubble() {
-    switch (popState)
-    {
+    switch (popState) {
         case POP_ONE:
             popState = POP_TWO;
             sprite.scale(sf::Vector2f(0.7f, 0.7f));

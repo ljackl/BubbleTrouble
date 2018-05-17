@@ -24,18 +24,6 @@ public:
     virtual void update(sf::RenderWindow& window, sf::Time delta) = 0;
     virtual void draw(sf::RenderWindow& window, sf::Time delta) = 0;
 
-    const sf::Vector2f &getPosition() const {
-        return position;
-    }
-
-    const sf::Vector2f &getVelocity() const {
-        return velocity;
-    }
-
-    const sf::Vector2f &getAcceleration() const {
-        return acceleration;
-    }
-
     const sf::FloatRect getRect() const {
         return sprite.getGlobalBounds();
     }

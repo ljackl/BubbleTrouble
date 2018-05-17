@@ -20,10 +20,12 @@ PlayGameState::PlayGameState(Game* game) {
     // Ground loading
     this->game->textureManager.getRef("ground").setRepeated(true);
     groundSprite.setTexture(this->game->textureManager.getRef("ground"));
+    groundSprite.setTextureRect(sf::IntRect(0, 0, this->game->window.getSize().x, this->game->textureManager.getRef("ground").getSize().y));
+    groundSprite.setPosition(sf::Vector2f(0, this->game->window.getSize().y - groundSprite.getLocalBounds().height));
 
     // Player Creation
     Animation staticAnim(0, 0, 1.0f);
-    player = Player(50, game->window.getSize().y - 40, this->game->textureManager.getRef("player"), { staticAnim });
+    player = Player(50, this->game->window.getSize().y - groundSprite.getLocalBounds().height, this->game->textureManager.getRef("player"), { staticAnim });
 
     // Bubble Creation
     sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f);
@@ -114,6 +116,9 @@ void PlayGameState::update(sf::Time delta) {
         // If popped remove
         if (bubble->isPopped())
             bubbles.erase(std::remove(bubbles.begin(), bubbles.end(), bubble), bubbles.end());
+        // Bounce of the ground
+        if (isIntersecting(bubble->getRect(), groundSprite.getGlobalBounds()))
+            bubble->bounce();
     }
 
     // Check for bubble bullet collisions
@@ -154,10 +159,9 @@ void PlayGameState::draw(sf::Time delta) {
     this->game->window.draw(this->game->background);
 
     // Ground
-    groundSprite.setTextureRect(sf::IntRect(0, 0, this->game->window.getSize().x, this->game->textureManager.getRef("ground").getSize().y));
-    groundSprite.setPosition(sf::Vector2f(0, this->game->window.getSize().y - groundSprite.getLocalBounds().height));
     this->game->window.draw(groundSprite);
 
+    // Text
     this->game->window.draw(text);
 
     // Draw Bubbles

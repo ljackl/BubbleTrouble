@@ -37,10 +37,10 @@ public:
     bool isPopped() { return popState == POPPED; }
 
     void reboundSides();
+    void reboundBottomOrTop();
+    void bounce();
 
 private:
-    void reboundBottomOrTop();
-
     State state;
     PopState popState;
 };
