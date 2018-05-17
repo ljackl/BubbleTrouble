@@ -24,7 +24,7 @@ public:
         sf::Text buttonText;
     };
 
-    MenuGameState(Game* game);
+    explicit MenuGameState(Game* game);
 
     void handleEvents() override;
     void update(sf::Time delta) override;
@@ -32,10 +32,9 @@ public:
 
 private:
     sf::Text text;
-
     std::list<MenuItem> menuItems;
-
     sf::View view;
+
     MenuResult HandleClick(int x, int y);
 };
 

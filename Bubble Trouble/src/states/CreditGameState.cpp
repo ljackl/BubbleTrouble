@@ -12,15 +12,20 @@ CreditGameState::CreditGameState(Game* game) {
     pos *= 0.5f;
     this->view.setCenter(pos);
 
-    for( int i = 0; i < 10; i++ ) {
-        bubbles.push_back(Bubble(rand() % 100, rand() % 100, STATE_SPLASHSCREEN));
+    sf::Vector2f vel;
+    sf::Vector2f acl = sf::Vector2f(0.0f, 0.0f);
+    for( int i = 0; i < 5; i++ ) {
+        vel = sf::Vector2f(rand() % 10, rand() % 10);
+        pos = sf::Vector2f(rand() % (game->window.getSize().x - 50) + 10, rand() % (game->window.getSize().y - 50) + 10);
+        bubbles.push_back(new Bubble(pos, vel, acl, STATE_SPLASHSCREEN, POP_ONE, this->game->textureManager.getRef("bubble")));
     }
+
 	// heading
     title = sf::Text("Bubble Trouble Remastered\nCredits\n\n", this->game->primaryFont, 11);
     title.setCharacterSize(22);
     title.setPosition(10, 10);
 	// contributors
-	contributors = sf::Text("> Product Owner:         Sarah Howarth\n> Lead Programmer:  Patrick Kelley\n> Programmer:              Jack Howarth-Green", this->game->primaryFont, 11);
+	contributors = sf::Text("> Product Owner: Sarah Howarth\n> Lead Programmer: Patrick Kelley\n> Programmer: Jack Howarth-Green", this->game->primaryFont, 11);
 	contributors.setCharacterSize(18);
 	contributors.setPosition(10, 100);
 
@@ -98,7 +103,7 @@ void CreditGameState::handleEvents() {
 
 void CreditGameState::update(sf::Time delta) {
     for (auto &item : bubbles) {
-        item.update(game->window, delta);
+        item->update(game->window, delta);
     }
 }
 
@@ -108,7 +113,7 @@ void CreditGameState::draw(sf::Time delta) {
     this->game->window.draw(this->game->background);
 
     for (auto &item : bubbles) {
-        item.draw(this->game->window, delta);
+        item->draw(this->game->window, delta);
     }
 
 	for (auto &item : menuItems) {
