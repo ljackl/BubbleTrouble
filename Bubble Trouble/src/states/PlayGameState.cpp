@@ -114,7 +114,7 @@ void PlayGameState::update(sf::Time delta) {
         bubble->update(this->game->window, delta);
         // Check if player hit
         if (isIntersecting(bubble->getRect(), player.getRect()))
-            this->game->changeState(new MenuGameState(this->game));
+            this->game->changeState(new EndGameState(this->game, score));
         // If popped remove
         if (bubble->isPopped())
             bubbles.erase(std::remove(bubbles.begin(), bubbles.end(), bubble), bubbles.end());

@@ -7,6 +7,7 @@
 
 #include "GameState.hpp"
 #include "MenuGameState.hpp"
+#include "EndGameState.hpp"
 
 #include "../core/Player.hpp"
 #include "../core/Bubble.hpp"

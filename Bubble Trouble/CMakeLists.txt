@@ -13,7 +13,7 @@ include_directories(include)
 set(SOURCE_OTHER src/other/TestClass.cpp src/other/TestClass.hpp)
 set(SOURCE_CORE src/core/Game.cpp src/core/Game.hpp src/core/Bubble.cpp src/core/Bubble.hpp src/core/Player.cpp src/core/Player.hpp src/core/Bullet.cpp src/core/Bullet.hpp src/core/GameEntity.cpp src/core/GameEntity.hpp)
 set(SOURCE_MEDIA src/core/TextureManager.cpp src/core/TextureManager.hpp src/core/AnimationHandler.cpp src/core/AnimationHandler.hpp)
-set(SOURCE_STATES src/states/GameState.hpp src/states/SplashGameState.hpp src/states/SplashGameState.cpp src/states/MenuGameState.hpp src/states/MenuGameState.cpp src/states/PlayGameState.hpp src/states/PlayGameState.cpp src/states/CreditGameState.hpp src/states/CreditGameState.cpp)
+set(SOURCE_STATES src/states/GameState.hpp src/states/SplashGameState.hpp src/states/SplashGameState.cpp src/states/MenuGameState.hpp src/states/MenuGameState.cpp src/states/PlayGameState.hpp src/states/PlayGameState.cpp src/states/CreditGameState.hpp src/states/CreditGameState.cpp src/states/EndGameState.cpp src/states/EndGameState.hpp)
 set(SOURCE_FILES ${SOURCE_CORE} ${SOURCE_MEDIA} ${SOURCE_STATES} ${SOURCE_OTHER})
 
 # Create BubbleTrouble Library
