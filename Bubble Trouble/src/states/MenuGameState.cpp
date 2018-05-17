@@ -32,6 +32,24 @@ MenuGameState::MenuGameState(Game* game) {
     playButton.button.setSize(sf::Vector2f(playButton.rect.width, playButton.rect.height));
     playButton.button.setPosition(sf::Vector2f(playButton.rect.left, playButton.rect.top));
 
+	// Credit Button
+	MenuItem creditButton;
+	creditButton.action = Credit;
+
+	creditButton.rect.left = 30;
+	creditButton.rect.top = game->window.getSize().y - 55 - 30;
+	creditButton.rect.width = 100;
+	creditButton.rect.height = 25;
+
+	creditButton.buttonText = sf::Text("Credit", this->game->secondaryFont, 12);
+	creditButton.buttonText.setPosition(sf::Vector2f(creditButton.rect.left + 10, creditButton.rect.top + 1));
+	creditButton.buttonText.setFillColor(sf::Color(0, 0, 0));
+
+	creditButton.button.setSize(sf::Vector2f(creditButton.rect.width, creditButton.rect.height));
+	creditButton.button.setPosition(sf::Vector2f(creditButton.rect.left, creditButton.rect.top));
+
+	// Add buttons to list
+	menuItems.push_back(creditButton);
     menuItems.push_back(playButton);
 }
 
@@ -71,7 +89,10 @@ void MenuGameState::handleEvents() {
             {
                 if (HandleClick(event.mouseButton.x,event.mouseButton.y) == Play) {
                     game->changeState(new PlayGameState(this->game));
-                }
+                } else if (HandleClick(event.mouseButton.x, event.mouseButton.y) == Credit) {
+					game->changeState(new CreditGameState(this->game));
+				}
+				
                 break;
             }
             default: break;
