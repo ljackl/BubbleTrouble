@@ -4,10 +4,14 @@
 
 #include "catch.hpp"
 #include "../src/core/Bullet.hpp"
+#include "../core/TextureManager.hpp"
 
 TEST_CASE("isOutOfYFrame") {
-    sf::FloatRect startPosition(10, -10, 10, 10);
-    Bullet testBullet(startPosition);
+    TextureManager textureManager;
+    textureManager.loadTexture("bullet", "resources/images/bullet.png");
+
+    sf::FloatRect startPosition(-10, -10, -10, -10);
+    Bullet testBullet(startPosition, textureManager.getRef("bullet"));
 
     REQUIRE(testBullet.isOutOfYFrame());
 }

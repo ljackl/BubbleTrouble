@@ -4,9 +4,8 @@
 
 #include "Player.hpp"
 
-Player::Player(float startX, float startY, sf::Texture& texture, const std::vector<Animation>& animations) {
-    position.x = startX;
-    position.y = startY;
+Player::Player(sf::Vector2f position, sf::Texture& texture, const std::vector<Animation>& animations) {
+    this->position = position;
 
     velocity.x = 0.0f;
     velocity.y = 0.0f;
@@ -22,7 +21,7 @@ Player::Player(float startX, float startY, sf::Texture& texture, const std::vect
             targetSize.x / this->sprite.getLocalBounds().width,
             targetSize.y / this->sprite.getLocalBounds().height);
 
-    position.y -= this->sprite.getGlobalBounds().height;
+    this->position.y -= this->sprite.getGlobalBounds().height;
 
     this->sprite.setPosition(position);
     /*this->animationHandler.frameSize = sf::IntRect(0, 0, 100, 100);

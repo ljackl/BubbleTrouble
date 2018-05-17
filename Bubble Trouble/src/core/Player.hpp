@@ -15,7 +15,7 @@ private:
 
 public:
     Player() {}
-    Player(float startX, float startY, sf::Texture& texture, const std::vector<Animation>& animations);
+    Player(sf::Vector2f position, sf::Texture& texture, const std::vector<Animation>& animations);
 
     void handleEvents() override;
     void update(sf::RenderWindow& window, sf::Time delta) override;

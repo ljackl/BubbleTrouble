@@ -52,20 +52,20 @@ void Bubble::bounce() {
 void Bubble::update(sf::RenderWindow& window, sf::Time delta) {
     switch (state) {
         case STATE_SPLASHSCREEN:
-            if (this->sprite.getGlobalBounds().left < 0 || this->sprite.getGlobalBounds().left + this->sprite.getGlobalBounds().width > window.getSize().x) {
+            if (sprite.getGlobalBounds().left < 0 || sprite.getGlobalBounds().left + sprite.getGlobalBounds().width > window.getSize().x) {
                 reboundSides();
             }
-            if (this->sprite.getGlobalBounds().top < 0 || this->sprite.getGlobalBounds().top + this->sprite.getGlobalBounds().height > window.getSize().y) {
+            if (sprite.getGlobalBounds().top < 0 || sprite.getGlobalBounds().top + sprite.getGlobalBounds().height > window.getSize().y) {
                 reboundBottomOrTop();
             }
             break;
 
         case STATE_PLAY:
             // https://gamedev.stackexchange.com/questions/121389/how-i-can-make-better-jump-to-my-game-c-sfml
-            if (this->sprite.getGlobalBounds().left < 0 || this->sprite.getGlobalBounds().left + this->sprite.getGlobalBounds().width > window.getSize().x) {
+            if (sprite.getGlobalBounds().left < 0 || sprite.getGlobalBounds().left + sprite.getGlobalBounds().width > window.getSize().x) {
                 reboundSides();
             }
-            if (this->sprite.getGlobalBounds().top > window.getSize().y / 2) {
+            if (sprite.getGlobalBounds().top > window.getSize().y / 2) {
                 acceleration.y = 9.8f;
             }
             break;
@@ -81,12 +81,12 @@ void Bubble::update(sf::RenderWindow& window, sf::Time delta) {
     position += velocity;
 
     // Move the bubble
-    this->sprite.setPosition(position);
+    sprite.setPosition(position);
 }
 
 void Bubble::draw(sf::RenderWindow& window, sf::Time delta) {
     // Draw this
-    window.draw(this->sprite);
+    window.draw(sprite);
 }
 
 void Bubble::popBubble() {
