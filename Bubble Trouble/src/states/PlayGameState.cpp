@@ -25,7 +25,9 @@ PlayGameState::PlayGameState(Game* game) {
 
     // Player Creation
     Animation staticAnim(0, 0, 1.0f);
-    player = Player(sf::Vector2f(50, this->game->window.getSize().y - groundSprite.getLocalBounds().height), this->game->textureManager.getRef("player"), { staticAnim });
+    player = Player(sf::Vector2f(50, this->game->window.getSize().y - groundSprite.getLocalBounds().height),
+                    this->game->textureManager.getRef("player-walking"),
+                    { Animation(0, 8, 0.2f)});
 
     // Bubble Creation
     sf::Vector2f vel = sf::Vector2f(0.0f, 0.0f);
