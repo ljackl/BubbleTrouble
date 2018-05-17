@@ -1,0 +1,19 @@
+Daily Standup for [Group 1 / BubbleTrouble / Wk10]
+Date: 11/05/2018
+
+Talking Points
+============================
+Things I've done
+* Nothing, yet!
+
+Things that were blocking me
+* Windows solution compatability
+
+Still working on
+* CreditGamestate
+
+Plan on doing
+* Player, bullet and bubble sprites
+
+General status
+* Catchup from two weeks break
