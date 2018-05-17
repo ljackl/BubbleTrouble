@@ -74,4 +74,7 @@ void Game::loadTextures() {
     textureManager.loadTexture("background", "resources/images/background.png");
     textureManager.loadTexture("ground", "resources/images/ground.png");
     textureManager.loadTexture("player", "resources/images/player.png");
+    textureManager.getRef("player").setSmooth(true);
+    textureManager.loadTexture("bubble", "resources/images/bubble.png");
+    textureManager.loadTexture("bullet", "resources/images/bullet.png");
 }

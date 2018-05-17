@@ -14,17 +14,24 @@ Player::Player(float startX, float startY, sf::Texture& texture, const std::vect
     acceleration.x = 0.0f;
     acceleration.y = 0.0f;
 
-    shape.setSize(sf::Vector2f(10, 10));
+    shape.setSize(sf::Vector2f(30, 40));
     shape.setPosition(position);
 
+    sf::Vector2f targetSize(30.0f, 40.0f);
     this->sprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
     this->sprite.setTexture(texture);
-    this->animationHandler.frameSize = sf::IntRect(0, 0, 100, 100);
+
+    this->sprite.setScale(
+            targetSize.x / this->sprite.getLocalBounds().width,
+            targetSize.y / this->sprite.getLocalBounds().height);
+
+    this->sprite.setPosition(position);
+    /*this->animationHandler.frameSize = sf::IntRect(0, 0, 100, 100);
     for(auto animation : animations)
     {
         this->animationHandler.addAnimimatin(animation);
     }
-    this->animationHandler.update(0.0f);
+    this->animationHandler.update(0.0f);*/
 }
 
 void Player::handleEvents() {
@@ -66,25 +73,21 @@ void Player::update(sf::RenderWindow& window, sf::Time delta)
     // Update the ball position variables
     position += velocity;
 
-    // Move the ball and the bat
+    // Move the player
     shape.setPosition(position);
+    this->sprite.setPosition(position);
 }
 
 void Player::draw(sf::RenderWindow& window, sf::Time delta) {
-    // Draw this
-    window.draw(getShape());
-
     /* Change the sprite to reflect the tile variant */
     //this->animationHandler.changeAnim(1);
 
     /* Update the animation */
-    this->animationHandler.update(delta.asSeconds());
+    //this->animationHandler.update(delta.asSeconds());
 
     /* Update the sprite */
-    this->sprite.setTextureRect(this->animationHandler.bounds);
+    //this->sprite.setTextureRect(this->animationHandler.bounds);
 
-
-    this->sprite.setPosition(position);
-    /* Draw the tile */
+    // Draw this
     window.draw(this->sprite);
 }

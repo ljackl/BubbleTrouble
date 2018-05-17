@@ -5,7 +5,7 @@
 #include "Bubble.hpp"
 
 // This the constructor and it is called when we create an object
-Bubble::Bubble(float startX, float startY, State pState)
+Bubble::Bubble(float startX, float startY, State pState, sf::Texture& texture)
 {
     position.x = startX;
     position.y = startY;
@@ -35,6 +35,16 @@ Bubble::Bubble(float startX, float startY, State pState)
 
     shape.setSize(sf::Vector2f(20, 20));
     shape.setPosition(position);
+
+    sf::Vector2f targetSize(20.0f, 20.0f);
+    this->sprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
+    this->sprite.setTexture(texture);
+
+    this->sprite.setScale(
+            targetSize.x / this->sprite.getLocalBounds().width,
+            targetSize.y / this->sprite.getLocalBounds().height);
+
+    this->sprite.setPosition(position);
 }
 
 Bubble::Bubble(const Bubble &p) {
@@ -44,6 +54,7 @@ Bubble::Bubble(const Bubble &p) {
     this->popState = p.popState;
     this->state = p.state;
     this->shape = p.shape;
+    this->sprite = p.sprite;
 }
 
 void Bubble::reboundSides()
@@ -107,14 +118,14 @@ void Bubble::update(sf::RenderWindow& window, sf::Time delta)
     // Update the ball position variables
     position += velocity;
 
-
-    // Move the ball and the bat
+    // Move the bubble
     shape.setPosition(position);
+    this->sprite.setPosition(position);
 }
 
 void Bubble::draw(sf::RenderWindow& window, sf::Time delta) {
     // Draw this
-    window.draw(getShape());
+    window.draw(this->sprite);
 }
 
 void Bubble::popBubble() {
@@ -123,11 +134,13 @@ void Bubble::popBubble() {
         case POP_ONE:
             popState = POP_TWO;
             shape.setSize(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
+            sprite.scale(sf::Vector2f(0.5f, 0.5f));
             break;
 
         case POP_TWO:
             popState = POP_THREE;
             shape.setSize(sf::Vector2f(shape.getSize().x / 2, shape.getSize().y / 2));
+            sprite.scale(sf::Vector2f(0.5f, 0.5f));
             break;
 
         case POP_THREE:

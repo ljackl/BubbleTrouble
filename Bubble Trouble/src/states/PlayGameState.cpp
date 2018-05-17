@@ -23,11 +23,11 @@ PlayGameState::PlayGameState(Game* game) {
 
     // Player Creation
     Animation staticAnim(0, 0, 1.0f);
-    player = Player(50, game->window.getSize().y - 20, this->game->textureManager.getRef("player"), { staticAnim });
+    player = Player(50, game->window.getSize().y - 40, this->game->textureManager.getRef("player"), { staticAnim });
 
     // Bubble Creation
     for( int i = 0; i < 2; i++ ) {
-        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
+        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY, this->game->textureManager.getRef("bubble")));
     }
 
 }
@@ -92,7 +92,7 @@ void PlayGameState::handleEvents() {
 
 std::random_device rd;
 std::mt19937 gen(rd());
-std::uniform_real_distribution<> dis(0, 100);
+std::uniform_real_distribution<> dis(0, 300);
 void PlayGameState::update(sf::Time delta) {
     player.update(this->game->window, delta);
 
@@ -143,7 +143,7 @@ void PlayGameState::update(sf::Time delta) {
     // Randomly create new bubbles
     int number = dis(gen);
     if (number == 1) {
-        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY));
+        bubbles.push_back(new Bubble(rand() % 100, rand() % 100, STATE_PLAY, this->game->textureManager.getRef("bubble")));
     }
 }
 
@@ -175,7 +175,7 @@ void PlayGameState::draw(sf::Time delta) {
 }
 
 void PlayGameState::fireBullet() {
-    bullets.push_back(new Bullet(player.getPosition()));
+    bullets.push_back(new Bullet(player.getPosition(), this->game->textureManager.getRef("bullet")));
 }
 
 bool PlayGameState::isIntersecting(sf::RectangleShape shape1, sf::RectangleShape shape2) {

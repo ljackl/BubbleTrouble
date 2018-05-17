@@ -11,7 +11,7 @@
 
 class Bullet : public GameEntity {
 public:
-    Bullet(sf::FloatRect startPosition);
+    Bullet(sf::FloatRect startPosition, sf::Texture& texture);
 
     void handleEvents() override {}
     void update(sf::RenderWindow& window, sf::Time delta) override;

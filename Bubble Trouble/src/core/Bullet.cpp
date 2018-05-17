@@ -4,7 +4,7 @@
 
 #include "Bullet.hpp"
 
-Bullet::Bullet(sf::FloatRect startPosition) {
+Bullet::Bullet(sf::FloatRect startPosition, sf::Texture& texture) {
     position.x = startPosition.left;
     position.y = startPosition.top;
 
@@ -16,6 +16,17 @@ Bullet::Bullet(sf::FloatRect startPosition) {
 
     shape.setSize(sf::Vector2f(2, 2));
     shape.setPosition(position);
+
+    this->sprite.setTexture(texture);
+
+    sf::Vector2f targetSize(15.0f, 10.0f);
+    this->sprite.setScale(
+            targetSize.x / this->sprite.getLocalBounds().width,
+            targetSize.y / this->sprite.getLocalBounds().height);
+
+    this->sprite.rotate(90);
+    this->sprite.setOrigin(sf::Vector2f(this->sprite.getLocalBounds().width / 2, this->sprite.getLocalBounds().height / 2));
+    this->sprite.setPosition(position);
 }
 
 void Bullet::update(sf::RenderWindow& window, sf::Time delta)
@@ -36,9 +47,10 @@ void Bullet::update(sf::RenderWindow& window, sf::Time delta)
 
     // Move the ball and the bat
     shape.setPosition(position);
+    this->sprite.setPosition(position);
 }
 
 void Bullet::draw(sf::RenderWindow& window, sf::Time delta) {
     // Draw this
-    window.draw(getShape());
+    window.draw(this->sprite);
 }

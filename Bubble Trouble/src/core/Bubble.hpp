@@ -26,7 +26,7 @@ enum PopState
 
 class Bubble : public GameEntity {
 public:
-    Bubble(float startX, float startY, State pState);
+    Bubble(float startX, float startY, State pState, sf::Texture& texture);
     Bubble(const Bubble& p);
 
     void handleEvents() override {}
