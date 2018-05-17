@@ -124,6 +124,7 @@ void PlayGameState::update(sf::Time delta) {
     }
 
     // Check for bubble bullet collisions
+    bool popped = false;
     for (auto &bullet : bullets) {
         for (auto &bubble : bubbles) {
             if (isIntersecting(bullet->getRect(), bubble->getRect())) {
@@ -139,10 +140,14 @@ void PlayGameState::update(sf::Time delta) {
                 score++;
                 text.setString("Score: " + std::to_string(score));
 
-                // Kill loop
+                // Kill loop to avoid unallocated object accessing
+                popped = true;
                 break;
             }
         }
+        // Kill loop to avoid unallocated object accessing
+        if (popped)
+            break;
     }
 
     // Randomly create new bubbles
