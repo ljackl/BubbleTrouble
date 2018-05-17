@@ -20,6 +20,8 @@ public:
     void handleEvents() override;
     void update(sf::RenderWindow& window, sf::Time delta) override;
     void draw(sf::RenderWindow& window, sf::Time delta) override;
+
+    void updateAnimation(sf::Time delta);
 };
 
 

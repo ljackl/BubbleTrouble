@@ -3,7 +3,7 @@
 #include "states/SplashGameState.hpp"
 
 int main() {
-    Game game(640,480);
+    Game game(1280,720);
 
     game.pushState(new SplashGameState(&game));
     game.run();

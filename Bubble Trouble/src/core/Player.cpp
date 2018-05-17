@@ -13,23 +13,22 @@ Player::Player(sf::Vector2f position, sf::Texture& texture, const std::vector<An
     acceleration.x = 0.0f;
     acceleration.y = 0.0f;
 
-    sf::Vector2f targetSize(30.0f, 40.0f);
     this->sprite.setOrigin(sf::Vector2f(0.0f, 0.0f));
     this->sprite.setTexture(texture);
 
-    this->sprite.setScale(
-            targetSize.x / this->sprite.getLocalBounds().width,
-            targetSize.y / this->sprite.getLocalBounds().height);
-
-    this->position.y -= this->sprite.getGlobalBounds().height;
-
-    this->sprite.setPosition(position);
-    /*this->animationHandler.frameSize = sf::IntRect(0, 0, 100, 100);
+    this->animationHandler.frameSize = sf::IntRect(0, 0, 72, 96);
     for(auto animation : animations)
     {
         this->animationHandler.addAnimimatin(animation);
     }
-    this->animationHandler.update(0.0f);*/
+    this->animationHandler.changeAnim(0);
+    this->animationHandler.update(0.0f);
+    this->sprite.setTextureRect(this->animationHandler.bounds);
+
+    this->sprite.scale(0.5f, 0.5f);
+
+    this->position.y -= this->sprite.getGlobalBounds().height;
+    this->sprite.setPosition(position);
 }
 
 void Player::handleEvents() {
@@ -60,6 +59,8 @@ void Player::update(sf::RenderWindow& window, sf::Time delta)
         // stop moving
         acceleration.x = 0.0f;
         velocity.x /= 1.1f;
+    } else {
+        updateAnimation(delta);
     }
 
     velocity += acceleration * delta.asSeconds();
@@ -76,15 +77,14 @@ void Player::update(sf::RenderWindow& window, sf::Time delta)
 }
 
 void Player::draw(sf::RenderWindow& window, sf::Time delta) {
-    /* Change the sprite to reflect the tile variant */
-    //this->animationHandler.changeAnim(1);
-
-    /* Update the animation */
-    //this->animationHandler.update(delta.asSeconds());
-
-    /* Update the sprite */
-    //this->sprite.setTextureRect(this->animationHandler.bounds);
-
     // Draw this
     window.draw(this->sprite);
+}
+
+void Player::updateAnimation(sf::Time delta) {
+    /* Update the animation */
+    this->animationHandler.update(delta.asSeconds());
+
+    /* Update the sprite */
+    this->sprite.setTextureRect(this->animationHandler.bounds);
 }
