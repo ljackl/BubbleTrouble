@@ -133,8 +133,11 @@ void PlayGameState::update(sf::Time delta) {
 
                 // Create double bubble & Pop bubble
                 bubble->popBubble();
-                this->bubbles.push_back(new Bubble(*bubble));
+				Bubble *b = new Bubble(*bubble);
+				b->bounce();
+                this->bubbles.push_back(b);
                 bubble->reboundSides();
+				bubble->bounce();
 
                 // Update score
                 score++;
