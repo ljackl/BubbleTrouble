@@ -1,0 +1,19 @@
+Implementation Stage End Meeting
+Product Review:
+	- what has the team accomplished in terms of coding
+		- main game functionality - high scores and character customisation have not been done
+	- What has the team accomplished in terms of documentaton produced:
+		- Documentation is produced for each stage extensively 
+	- Have these achievements been discussed with and demonstrated to the product owner?
+		- Yes Sarah has had a look at the product and wiki 
+
+Process Retrospective:
+	- What process has worked well so far in the implementation stage?
+		- Branching worked well; helped with organisation
+		- good solution for cross platform dev 
+		- 
+	- What could be improved for the future?
+		- Toggl usage
+		- Communication; - talking between linux and windows developers
+				 - talking to each other in regards to workload 
+				 - 
