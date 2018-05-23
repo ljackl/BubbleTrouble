@@ -65,7 +65,7 @@ void Bubble::update(sf::RenderWindow& window, sf::Time delta) {
             if (sprite.getGlobalBounds().left < 0 || sprite.getGlobalBounds().left + sprite.getGlobalBounds().width > window.getSize().x) {
                 reboundSides();
             }
-            if (sprite.getGlobalBounds().top > window.getSize().y / 2) {
+            if (sprite.getGlobalBounds().top*2 > window.getSize().y / 2) {
                 acceleration.y = 9.8f;
             }
             break;
